@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance" />
+
+    <style name="TextAppearance.CardGame" />
+
+    <style name="TextAppearance.CardGame.Display">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/cardgame_display_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_display_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.HeadlineXL">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/cardgame_headline_xl_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_headline_xl_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.HeadlineL">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_headline_l_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_headline_l_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.HeadlineM">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_headline_m_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_headline_m_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.HeadlineS">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_headline_s_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_headline_s_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.SubtitleL">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_subtitle_l_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_subtitle_l_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.SubtitleM">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_subtitle_m_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_subtitle_m_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyL">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_body_l_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_body_l_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyL.Regular" />
+
+    <style name="TextAppearance.CardGame.BodyL.Bold">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyL.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyM">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_body_m_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_body_m_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyM.Regular" />
+
+    <style name="TextAppearance.CardGame.BodyM.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyM.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyS">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_body_s_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_body_s_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyS.Regular" />
+
+    <style name="TextAppearance.CardGame.BodyS.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.BodyS.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.Caption">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_caption_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_caption_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.Caption.TabLayout">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.ButtonL">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_button_l_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_button_l_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.ButtonM">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_button_m_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_button_m_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.ButtonS">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_button_s_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_button_s_letter_spacing</item>
+    </style>
+
+    <style name="TextAppearance.CardGame.ButtonXS">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/cardgame_button_xs_font_size</item>
+        <item name="android:letterSpacing">@dimen/cardgame_button_xs_letter_spacing</item>
+    </style>
+    
+</resources>

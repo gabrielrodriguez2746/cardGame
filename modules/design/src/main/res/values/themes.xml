@@ -1,0 +1,27 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="CardGameAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
+
+        <item name="android:colorBackground">@color/color_background</item>
+        <item name="colorOnSurface">@color/color_surface</item>
+        <item name="colorError">@color/color_error</item>
+
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.CardGame.Display</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.CardGame.Display</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.CardGame.HeadlineXL</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.CardGame.HeadlineL</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.CardGame.HeadlineM</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.CardGame.HeadlineS</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.CardGame.SubtitleL</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.CardGame.SubtitleM</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.CardGame.BodyL</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.CardGame.BodyS</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.CardGame.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.CardGame.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.CardGame.ButtonS</item>
+
+    </style>
+</resources>

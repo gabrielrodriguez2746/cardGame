@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Styles" />
+
+    <style name="Styles.CardGame" />
+
+    <style name="Styles.CardGame.Text" />
+
+    <style name="Styles.CardGame.Text.Primary">
+        <item name="android:textColor">?colorPrimary</item>
+    </style>
+
+    <style name="Styles.CardGame.Text.Secondary">
+        <item name="android:textColor">?colorSecondary</item>
+    </style>
+
+    <!--Buttons-->
+
+    <style name="Style.CardGame.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:paddingStart">@dimen/cardgame_spacing_s</item>
+        <item name="android:paddingEnd">@dimen/cardgame_spacing_s</item>
+        <item name="iconGravity">textStart</item>
+
+    </style>
+
+    <style name="Style.CardGame.Button.XS">
+        <item name="android:minHeight">@dimen/cardgame_button_xs_min_height</item>
+        <item name="android:minWidth">@dimen/cardgame_button_xs_min_width</item>
+        <item name="android:textAppearance">@style/TextAppearance.CardGame.ButtonXS</item>
+        <item name="iconSize">@dimen/cardgame_button_xs_icon_size</item>
+        <item name="iconPadding">@dimen/cardgame_button_xs_icon_padding</item>
+    </style>
+
+    <style name="Style.CardGame.Button.S">
+        <item name="android:minHeight">@dimen/cardgame_button_s_min_height</item>
+        <item name="android:minWidth">@dimen/cardgame_button_s_min_width</item>
+        <item name="android:textAppearance">@style/TextAppearance.CardGame.ButtonS</item>
+        <item name="iconSize">@dimen/cardgame_button_s_icon_size</item>
+        <item name="iconPadding">@dimen/cardgame_button_s_icon_padding</item>
+    </style>
+
+    <style name="Style.CardGame.Button.M">
+        <item name="android:minHeight">@dimen/cardgame_button_m_min_height</item>
+        <item name="android:minWidth">@dimen/cardgame_button_m_min_width</item>
+        <item name="android:textAppearance">@style/TextAppearance.CardGame.ButtonM</item>
+        <item name="iconSize">@dimen/cardgame_button_m_icon_size</item>
+        <item name="iconPadding">@dimen/cardgame_button_m_icon_padding</item>
+    </style>
+
+    <style name="Style.CardGame.Button.L">
+        <item name="android:minHeight">@dimen/cardgame_button_l_min_height</item>
+        <item name="android:minWidth">@dimen/cardgame_button_l_min_width</item>
+        <item name="android:textAppearance">@style/TextAppearance.CardGame.ButtonL</item>
+        <item name="iconSize">@dimen/cardgame_button_l_icon_size</item>
+        <item name="iconPadding">@dimen/cardgame_button_l_icon_padding</item>
+    </style>
+    
+</resources>

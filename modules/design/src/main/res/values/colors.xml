@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">@color/navy_blue</color>
+    <color name="color_primary_variant">@color/blue_grotto</color>
+    <color name="color_background">@color/baby_blue</color>
+    <color name="color_surface">@color/blue_green</color>
+    <color name="color_error">@color/red</color>
+
+    <color name="color_on_primary">@color/black</color>
+    <color name="color_on_background">@color/white</color>
+    <color name="color_on_surface">@color/white</color>
+    <color name="color_on_error">@color/white</color>
+
+</resources>
