@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/Styles.CardGame.Text.Secondary.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/cardgame_spacing_m"
+        android:text="@string/landing_war_of_suits"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.CardGame.HeadlineL" />
+
+</FrameLayout>

@@ -35,9 +35,11 @@ object Libraries {
     object Android {
         private object Versions {
             const val material = "1.3.0"
+            const val appcompat = "1.2.0"
         }
 
         const val material = "com.google.android.material:material:${Versions.material}"
+        const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     }
 
 }

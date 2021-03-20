@@ -1,13 +1,12 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
 }
 
 apply(from = "$rootDir/buildSrc/android-base.kts")
 
 android {
-
-    defaultConfig { applicationId = "com.codechallenge.cardgame" }
+    buildFeatures.viewBinding = true
 }
 
 dependencies {
@@ -15,5 +14,6 @@ dependencies {
     implementation(Libraries.Kotlin.stdLib)
     implementation(project(":modules:design"))
 
-    implementation(project(":features:landing"))
+    implementation(Libraries.Android.appcompat)
+
 }
