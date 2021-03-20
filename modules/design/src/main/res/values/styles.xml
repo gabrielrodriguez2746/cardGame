@@ -8,11 +8,15 @@
     <style name="Styles.CardGame.Text" />
 
     <style name="Styles.CardGame.Text.Primary">
-        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textColor">?colorOnBackground</item>
     </style>
 
     <style name="Styles.CardGame.Text.Secondary">
-        <item name="android:textColor">?colorSecondary</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+    </style>
+
+    <style name="Styles.CardGame.Text.Secondary.Bold">
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!--Buttons-->
