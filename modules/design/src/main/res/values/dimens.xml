@@ -96,9 +96,5 @@
     <dimen name="cardgame_button_l_min_width">128dp</dimen>
     <dimen name="cardgame_button_l_icon_size">28dp</dimen>
     <dimen name="cardgame_button_l_icon_padding">12dp</dimen>
-
-    <dimen name="cardgame_pin_height">46dp</dimen>
-    <dimen name="cardgame_pin_width">74dp</dimen>
-    <dimen name="cardgame_pin_line_width">1dp</dimen>
     
 </resources>
