@@ -13,6 +13,6 @@ android {
 dependencies {
 
     implementation(Libraries.Kotlin.stdLib)
-    implementation(Libraries.Android.material)
+    implementation(project(":modules:design"))
 
 }
