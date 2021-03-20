@@ -1,7 +1,8 @@
-package com.codechallenge.landing
+package com.codechallenge.landing.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.codechallenge.navigation.navigateNext
 import com.codechallenge.landing.databinding.ActivityLandingBinding
 
 class LandingActivity : AppCompatActivity() {
@@ -11,7 +12,7 @@ class LandingActivity : AppCompatActivity() {
         with(ActivityLandingBinding.inflate(layoutInflater)) {
             setContentView(root)
         }
+        navigateNext(this)
     }
-
 
 }
