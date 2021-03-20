@@ -9,6 +9,7 @@ buildscript {
         classpath(Build.androidGradle)
         classpath(Build.kotlinGradle)
         classpath(Plugins.ktlint)
+        classpath(Plugins.junit5)
     }
 }
 

@@ -12,3 +12,11 @@ fun DependencyHandler.kapt(depName: String) {
     add("kapt", depName)
 }
 
+fun DependencyHandler.testImplementation(depName: String) {
+    add("testImplementation", depName)
+}
+
+fun DependencyHandler.testRuntimeOnly(depName: String) {
+    add("testRuntimeOnly", depName)
+}
+

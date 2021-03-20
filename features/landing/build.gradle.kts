@@ -13,6 +13,7 @@ dependencies {
 
     implementation(Libraries.Kotlin.stdLib)
     implementation(project(":modules:design"))
+    implementation(project(":modules:core:navigation"))
 
     implementation(Libraries.Android.appcompat)
 

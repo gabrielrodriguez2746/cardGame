@@ -3,7 +3,7 @@
     package="com.codechallenge.landing">
 
     <application>
-        <activity android:name=".LandingActivity"
+        <activity android:name=".presentation.LandingActivity"
             android:theme="@style/CardGameAppTheme.Launcher">
 
             <intent-filter>
