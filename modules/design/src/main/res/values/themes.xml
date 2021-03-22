@@ -27,4 +27,10 @@
         <item name="textAppearanceButton">@style/TextAppearance.CardGame.ButtonS</item>
 
     </style>
+
+    <style name="ThemeOverlay.CardGameAppTheme.Secondary" parent="">
+        <item name="colorPrimary">@color/color_primary_variant</item>
+        <item name="colorPrimaryVariant">@color/color_primary</item>
+    </style>
+
 </resources>
