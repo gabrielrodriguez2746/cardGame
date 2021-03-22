@@ -26,6 +26,7 @@ object Plugins {
     const val ktlintName = "org.jlleitschuh.gradle.ktlint"
     const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktlint}"
     const val junit5 = "de.mannodermaus.gradle.plugins:android-junit5:${Versions.junit5}"
+    const val junit5Name = "de.mannodermaus.android-junit5"
 }
 
 object Libraries {
@@ -38,10 +39,12 @@ object Libraries {
         private object Versions {
             const val material = "1.3.0"
             const val appcompat = "1.2.0"
+            const val fragments = "1.3.1"
         }
 
         const val material = "com.google.android.material:material:${Versions.material}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+        const val fragments = "androidx.fragment:fragment-ktx:${Versions.fragments}"
     }
 
     object Externals {

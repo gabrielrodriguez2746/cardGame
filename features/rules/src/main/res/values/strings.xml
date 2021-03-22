@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="rules_title">Game rules</string>
+
+    <string name="rules_description">
+        The rules are pretty simple: \n\n
+        <br>
+        • There are two players. Each player has a pile of cards to play, and a discard pile. \n
+        </br>
+        <br>
+        • The game uses a set of Poker cards. \n
+        </br>
+        <br>
+        • The set must be shuffled at the beginning of each game. \n
+        </br>
+        <br>
+        • The whole set must be split into two piles of equal size, each one must be given to each player. \n
+        </br>
+        <br>
+        • Players have access to (and can only play) the top card of their regular pile. \n
+        </br>
+        <br>
+        • In each round, both players lay down a card. The one holding the highest value card wins the round, and puts both cards into their discard pile. \n
+        </br>
+        <br>
+        • In case that both cards have equal value, the winner card is decided based on their suits (clubs, diamonds. hearts or spades). \n
+        </br>
+        <br>
+        • The suit priority must be defined at random, at the start of each game. \n
+        </br>
+        <br>
+        • Aces are high (values are, from lowest to highest: 2..10, J, Q, K, A). \n
+        </br>
+        <br>
+        • The game finishes when both players have played all of their cards. \n
+        </br>
+        <br>
+        • The user with more cards in their discard pile wins the game. \n
+        </br>
+    </string>
+
+    <string name="rules_continue">Got it</string>
+
+</resources>

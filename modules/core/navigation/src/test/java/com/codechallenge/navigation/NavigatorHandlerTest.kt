@@ -1,6 +1,7 @@
 package com.codechallenge.navigation
 
 import android.app.Activity
+import android.content.Context
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
@@ -10,11 +11,9 @@ import kotlin.reflect.KClass
 
 class NavigatorHandlerTest {
 
-    private class ActivityToHandle : Activity()
-
     @Test
     fun `GIVEN no handler to manage injection WHEN handle injection THEN throw exception and call all handlers`() {
-        val subject = mockk<ActivityToHandle>()
+        val subject = mockk<Context>()
         val handlerA = spyk(createHandler<Activity>())
         val handlerB = spyk(createHandler<Activity>())
         val handlerC = spyk(createHandler<Activity>())
@@ -22,7 +21,7 @@ class NavigatorHandlerTest {
         assertThrows<IllegalStateException> {
             handler.navigate(subject)
         }
-        verify {
+        verify(exactly = 1) {
             handlerA.navigate(subject)
             handlerB.navigate(subject)
             handlerC.navigate(subject)
@@ -31,26 +30,26 @@ class NavigatorHandlerTest {
 
     @Test
     fun `GIVEN handler addition and one valid handler WHEN handle injection THEN handler called until handling position`() {
-        val subject = mockk<ActivityToHandle>()
+        val subject = mockk<Context>()
         val handlerA = spyk(createHandler<Activity>())
-        val handlerB = spyk(createHandler(ActivityToHandle::class))
+        val handlerB = spyk(createHandler(Context::class))
         val handlerC = spyk(createHandler<Activity>())
 
         val handler = handlerA.setNext(handlerB).setNext(handlerC)
 
         handler.navigate(subject)
 
-        verify {
+        verify(exactly = 1) {
             handlerA.navigate(subject)
             handlerB.navigate(subject)
         }
         verify(exactly = 0) { handlerC.navigate(subject) }
     }
 
-    private fun <R : Activity> createHandler(kClass: KClass<R>? = null) =
+    private fun <R : Any> createHandler(kClass: KClass<R>? = null) =
         object : NavigatorHandler() {
 
-            override fun <T : Activity> navigate(subject: T) {
+            override fun <T : Any> navigate(subject: T) {
                 if (kClass?.isInstance(subject) != true) moveToNext(subject)
             }
         }

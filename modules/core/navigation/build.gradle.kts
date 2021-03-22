@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    id("de.mannodermaus.android-junit5")
+    id(Plugins.junit5Name)
 }
 
 apply(from = "$rootDir/buildSrc/android-base.kts")
@@ -9,6 +9,7 @@ apply(from = "$rootDir/buildSrc/android-base.kts")
 dependencies {
 
     implementation(Libraries.Kotlin.stdLib)
+    implementation(Libraries.Android.fragments)
 
     testImplementation(Libraries.Test.mockk)
     testImplementation(Libraries.Test.junit5Api)

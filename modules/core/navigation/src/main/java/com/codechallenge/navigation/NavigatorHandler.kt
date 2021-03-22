@@ -1,15 +1,17 @@
 package com.codechallenge.navigation
 
-import android.app.Activity
-
 abstract class NavigatorHandler {
 
     private var nextHandler: NavigatorHandler? = null
 
-    abstract fun <T : Activity> navigate(subject: T)
+    /**
+     * This abstraction should be improved a lot and restricted to fragments, views or activities
+     */
+    abstract fun <T : Any> navigate(subject: T)
 
-    protected fun <T : Activity> moveToNext(subject: T) {
-        nextHandler?.navigate(subject) ?: throw IllegalStateException("It's not possible navigate from $subject")
+    protected fun <T : Any> moveToNext(subject: T) {
+        nextHandler?.navigate(subject)
+            ?: throw IllegalStateException("It's not possible navigate from $subject")
     }
 
     /**
