@@ -19,6 +19,4 @@ class RulesNavigationHandler @Inject constructor(
             moveToNext(subject)
         }
     }
-
-
 }

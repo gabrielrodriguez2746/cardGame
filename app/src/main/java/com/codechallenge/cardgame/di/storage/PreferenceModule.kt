@@ -21,5 +21,4 @@ object PreferenceModule {
     fun provideSharedPreferenceEditor(preference: SharedPreferences): SharedPreferences.Editor {
         return preference.edit()
     }
-
 }

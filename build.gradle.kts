@@ -23,3 +23,9 @@ allprojects {
 plugins {
     id(Plugins.ktlintName) version Plugins.Versions.ktlint
 }
+
+subprojects {
+    apply {
+        plugin(Plugins.ktlintName)
+    }
+}

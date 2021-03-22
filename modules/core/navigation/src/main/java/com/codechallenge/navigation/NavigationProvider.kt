@@ -2,6 +2,5 @@ package com.codechallenge.navigation
 
 interface NavigationProvider {
 
-    fun getNavigator() : NavigatorHandler
-
+    fun getNavigator(): NavigatorHandler
 }

@@ -53,5 +53,4 @@ class NavigatorHandlerTest {
                 if (kClass?.isInstance(subject) != true) moveToNext(subject)
             }
         }
-
 }

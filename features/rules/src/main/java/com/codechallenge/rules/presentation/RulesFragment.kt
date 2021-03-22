@@ -32,5 +32,4 @@ class RulesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

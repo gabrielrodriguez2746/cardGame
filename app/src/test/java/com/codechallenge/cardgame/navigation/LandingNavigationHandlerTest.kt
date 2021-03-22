@@ -42,7 +42,6 @@ class LandingNavigationHandlerTest {
         verify { subject.finish() }
     }
 
-
     @Test
     fun `GIVEN no landing activity as subject and no more handlers WHEN navigate THEN throw exception`() {
         val subject = mockk<RulesActivity>()
@@ -53,6 +52,5 @@ class LandingNavigationHandlerTest {
         verify(exactly = 0) {
             localStorageDataSource.getPreference(any(), any())
         }
-
     }
 }

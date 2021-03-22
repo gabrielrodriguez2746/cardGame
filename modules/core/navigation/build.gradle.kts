@@ -14,5 +14,4 @@ dependencies {
     testImplementation(Libraries.Test.mockk)
     testImplementation(Libraries.Test.junit5Api)
     testRuntimeOnly(Libraries.Test.junit5Engine)
-
 }

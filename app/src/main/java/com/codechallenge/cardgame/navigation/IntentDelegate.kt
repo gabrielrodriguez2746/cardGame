@@ -9,5 +9,4 @@ class IntentDelegate @Inject constructor() {
     fun getIntent(context: Context, kClass: Class<*>): Intent {
         return Intent(context, kClass)
     }
-
 }

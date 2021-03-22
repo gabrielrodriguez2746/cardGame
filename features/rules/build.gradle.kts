@@ -17,5 +17,4 @@ dependencies {
 
     implementation(Libraries.Android.appcompat)
     implementation(Libraries.Android.fragments)
-
 }

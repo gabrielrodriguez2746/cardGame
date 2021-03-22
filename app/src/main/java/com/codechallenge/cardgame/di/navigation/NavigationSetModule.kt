@@ -17,6 +17,4 @@ abstract class NavigationSetModule {
     @Binds
     @IntoSet
     abstract fun bindRulesNavigationHandler(navigator: RulesNavigationHandler): NavigatorHandler
-
 }
-

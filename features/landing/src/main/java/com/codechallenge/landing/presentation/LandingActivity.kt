@@ -2,8 +2,8 @@ package com.codechallenge.landing.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.codechallenge.navigation.navigateNext
 import com.codechallenge.landing.databinding.ActivityLandingBinding
+import com.codechallenge.navigation.navigateNext
 
 class LandingActivity : AppCompatActivity() {
 
@@ -14,5 +14,4 @@ class LandingActivity : AppCompatActivity() {
         }
         navigateNext(this)
     }
-
 }
