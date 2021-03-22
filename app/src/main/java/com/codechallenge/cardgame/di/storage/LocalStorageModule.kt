@@ -14,8 +14,4 @@ abstract class LocalStorageModule {
     abstract fun bindPreferenceStorageDataSource(
         preference: PreferenceStorageDataSource
     ): LocalStorageDataSource
-
 }
-
-
-

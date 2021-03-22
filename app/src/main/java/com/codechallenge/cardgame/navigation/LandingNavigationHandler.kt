@@ -26,5 +26,4 @@ class LandingNavigationHandler @Inject constructor(
             moveToNext(subject)
         }
     }
-
 }

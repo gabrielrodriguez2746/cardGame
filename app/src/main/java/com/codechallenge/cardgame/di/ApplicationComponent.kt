@@ -23,5 +23,4 @@ interface ApplicationComponent {
     }
 
     fun inject(application: CardGameApplication)
-
 }

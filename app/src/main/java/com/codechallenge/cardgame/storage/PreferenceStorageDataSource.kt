@@ -8,7 +8,7 @@ class PreferenceStorageDataSource @Inject constructor(
     private val preferenceEditor: SharedPreferences.Editor,
 ) : LocalStorageDataSource {
 
-    override fun <T: Any> savePreference(key: String, value: T) {
+    override fun <T : Any> savePreference(key: String, value: T) {
         when {
             value.javaClass.isType<Boolean>() -> preferenceEditor.putBoolean(key, value.toType()).apply()
             value.javaClass.isType<String>() -> preferenceEditor.putString(key, value.toType()).apply()
@@ -20,7 +20,7 @@ class PreferenceStorageDataSource @Inject constructor(
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T: Any> getPreference(key: String, default: T) : T {
+    override fun <T : Any> getPreference(key: String, default: T): T {
         return when {
             default.javaClass.isType<Boolean>() -> preference.getBoolean(key, default.toType()) as T
             default.javaClass.isType<String>() -> preference.getString(key, default.toType()) as T
@@ -36,5 +36,4 @@ class PreferenceStorageDataSource @Inject constructor(
     private inline fun <reified T> Class<*>.isType(): Boolean {
         return isAssignableFrom(T::class.java)
     }
-
 }

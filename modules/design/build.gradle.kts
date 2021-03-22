@@ -9,5 +9,4 @@ dependencies {
 
     implementation(Libraries.Kotlin.stdLib)
     api(Libraries.Android.material)
-
 }

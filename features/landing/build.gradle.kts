@@ -16,5 +16,4 @@ dependencies {
     implementation(project(":modules:core:navigation"))
 
     implementation(Libraries.Android.appcompat)
-
 }

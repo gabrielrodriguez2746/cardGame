@@ -28,5 +28,4 @@ class RulesActivity : AppCompatActivity(), NavigationProvider {
     override fun getNavigator(): NavigatorHandler {
         return getParentNavigator()
     }
-
 }

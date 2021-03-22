@@ -85,6 +85,4 @@ class PreferenceStorageDataSourceTest {
             storageDataSource.getPreference(key, listOf<Any>())
         }
     }
-
-
 }

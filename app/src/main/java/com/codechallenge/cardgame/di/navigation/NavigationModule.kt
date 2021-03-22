@@ -15,6 +15,4 @@ object NavigationModule {
             handlerResult.setNext(nextHandler)
         }
     }
-
 }
-

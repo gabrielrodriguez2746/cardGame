@@ -16,9 +16,7 @@ class CardGameApplication : Application(), NavigationProvider {
         with(DaggerApplicationComponent.factory().create(this)) {
             inject(this@CardGameApplication)
         }
-
     }
 
     override fun getNavigator(): NavigatorHandler = navigatior
-
 }

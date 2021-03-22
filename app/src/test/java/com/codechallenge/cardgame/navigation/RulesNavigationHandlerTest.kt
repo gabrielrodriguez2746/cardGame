@@ -46,8 +46,5 @@ class RulesNavigationHandlerTest {
         verify(exactly = 0) {
             localStorageDataSource.savePreference(any(), any())
         }
-
     }
-
-
 }
