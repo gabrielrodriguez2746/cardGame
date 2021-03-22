@@ -20,6 +20,7 @@ dependencies {
 
     implementation(project(":features:landing"))
     implementation(project(":features:rules"))
+    implementation(project(":features:home"))
 
     implementation(Libraries.Externals.dagger)
     kapt(Libraries.Externals.daggerCompiler)
