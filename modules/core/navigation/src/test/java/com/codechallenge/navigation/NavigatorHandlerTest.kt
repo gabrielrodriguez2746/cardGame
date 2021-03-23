@@ -1,6 +1,5 @@
 package com.codechallenge.navigation
 
-import android.app.Activity
 import android.content.Context
 import io.mockk.mockk
 import io.mockk.spyk
@@ -14,9 +13,9 @@ class NavigatorHandlerTest {
     @Test
     fun `GIVEN no handler to manage injection WHEN handle injection THEN throw exception and call all handlers`() {
         val subject = mockk<Context>()
-        val handlerA = spyk(createHandler<Activity>())
-        val handlerB = spyk(createHandler<Activity>())
-        val handlerC = spyk(createHandler<Activity>())
+        val handlerA = spyk(createHandler())
+        val handlerB = spyk(createHandler())
+        val handlerC = spyk(createHandler())
         val handler = handlerA.setNext(handlerB).setNext(handlerC)
         assertThrows<IllegalStateException> {
             handler.navigate(subject)
@@ -31,9 +30,9 @@ class NavigatorHandlerTest {
     @Test
     fun `GIVEN handler addition and one valid handler WHEN handle injection THEN handler called until handling position`() {
         val subject = mockk<Context>()
-        val handlerA = spyk(createHandler<Activity>())
+        val handlerA = spyk(createHandler())
         val handlerB = spyk(createHandler(Context::class))
-        val handlerC = spyk(createHandler<Activity>())
+        val handlerC = spyk(createHandler())
 
         val handler = handlerA.setNext(handlerB).setNext(handlerC)
 
@@ -46,7 +45,7 @@ class NavigatorHandlerTest {
         verify(exactly = 0) { handlerC.navigate(subject) }
     }
 
-    private fun <R : Any> createHandler(kClass: KClass<R>? = null) =
+    private fun createHandler(kClass: KClass<*>? = null) =
         object : NavigatorHandler() {
 
             override fun <T : Any> navigate(subject: T) {
