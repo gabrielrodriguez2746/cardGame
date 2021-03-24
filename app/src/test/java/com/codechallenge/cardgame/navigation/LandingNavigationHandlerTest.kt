@@ -17,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class LandingNavigationHandlerTest {
+internal class LandingNavigationHandlerTest {
 
     private val localStorageDataSource: LocalStorageDataSource = mockk()
     private val intentDelegate: IntentDelegate = mockk()

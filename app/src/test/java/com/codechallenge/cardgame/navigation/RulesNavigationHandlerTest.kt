@@ -18,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class RulesNavigationHandlerTest {
+internal class RulesNavigationHandlerTest {
 
     private val localStorageDataSource: LocalStorageDataSource = mockk(relaxUnitFun = true)
     private val intentDelegate: IntentDelegate = mockk()

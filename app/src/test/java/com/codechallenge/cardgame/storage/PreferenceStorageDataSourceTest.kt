@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class PreferenceStorageDataSourceTest {
+internal class PreferenceStorageDataSourceTest {
 
     private val preference: SharedPreferences = mockk {
         every { getBoolean(any(), any()) } answers { secondArg() }

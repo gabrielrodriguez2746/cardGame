@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.codechallenge.home.R
 import com.codechallenge.home.databinding.FragmentHomeBinding
 import com.codechallenge.navigation.navigateNext
 
@@ -24,7 +25,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding?.buttonRules?.setOnClickListener {
-            navigateNext(this)
+            navigateNext(this, R.id.buttonRules)
         }
         _binding?.buttonStart?.setOnClickListener {
             navigateNext(this)

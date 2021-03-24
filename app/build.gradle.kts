@@ -17,10 +17,13 @@ dependencies {
     implementation(Libraries.Kotlin.stdLib)
     implementation(project(":modules:design"))
     implementation(project(":modules:core:navigation"))
+    implementation(project(":modules:core:injector"))
 
     implementation(project(":features:landing"))
     implementation(project(":features:rules"))
     implementation(project(":features:home"))
+
+    implementation(Libraries.Android.fragments)
 
     implementation(Libraries.Externals.dagger)
     kapt(Libraries.Externals.daggerCompiler)

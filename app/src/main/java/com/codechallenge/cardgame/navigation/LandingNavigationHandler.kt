@@ -15,7 +15,7 @@ class LandingNavigationHandler @Inject constructor(
 
     private val hasSeenRules get() = localStorageDataSource.getPreference(HAS_SEEN_RULES, false)
 
-    override fun <T : Any> navigate(subject: T) {
+    override fun <T : Any> navigate(subject: T, sourceIdentifier: Int?) {
         if (subject is LandingActivity) {
             if (hasSeenRules) {
                 navigateToHome(subject)
@@ -24,7 +24,7 @@ class LandingNavigationHandler @Inject constructor(
             }
             subject.finish()
         } else {
-            moveToNext(subject)
+            moveToNext(subject, sourceIdentifier)
         }
     }
 
