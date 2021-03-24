@@ -7,10 +7,10 @@ abstract class NavigatorHandler {
     /**
      * This abstraction should be improved a lot and restricted to fragments, views or activities
      */
-    abstract fun <T : Any> navigate(subject: T)
+    abstract fun <T : Any> navigate(subject: T, sourceIdentifier: Int? = null)
 
-    protected fun <T : Any> moveToNext(subject: T) {
-        nextHandler?.navigate(subject)
+    protected fun <T : Any> moveToNext(subject: T, sourceIdentifier: Int? = null) {
+        nextHandler?.navigate(subject, sourceIdentifier)
             ?: throw IllegalStateException("It's not possible navigate from $subject")
     }
 

@@ -2,6 +2,7 @@ package com.codechallenge.cardgame.di
 
 import android.app.Application
 import com.codechallenge.cardgame.CardGameApplication
+import com.codechallenge.cardgame.di.injector.InjectorModule
 import com.codechallenge.cardgame.di.navigation.NavigationModule
 import com.codechallenge.cardgame.di.storage.LocalStorageModule
 import dagger.BindsInstance
@@ -11,6 +12,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         NavigationModule::class,
+        InjectorModule::class,
         LocalStorageModule::class
     ]
 )

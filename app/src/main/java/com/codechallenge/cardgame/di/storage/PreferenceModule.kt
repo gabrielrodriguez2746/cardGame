@@ -8,7 +8,7 @@ import dagger.Provides
 import dagger.Reusable
 
 @Module
-object PreferenceModule {
+internal object PreferenceModule {
 
     @Provides
     @Reusable

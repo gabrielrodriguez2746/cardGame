@@ -18,7 +18,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/match_constraint"
         android:layout_marginTop="@dimen/cardgame_spacing_s"
         android:layout_marginBottom="@dimen/cardgame_spacing_s"
         app:layout_constraintBottom_toTopOf="@id/buttonNext"

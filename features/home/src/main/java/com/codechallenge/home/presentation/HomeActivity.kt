@@ -6,14 +6,27 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.codechallenge.home.R
 import com.codechallenge.home.databinding.ActivityHomeBinding
+import com.codechallenge.home.di.HomeActivityComponent
+import com.codechallenge.injector.InjectionNode
+import com.codechallenge.injector.plug
+import com.codechallenge.injector.unplug
 import com.codechallenge.navigation.NavigationProvider
 import com.codechallenge.navigation.NavigatorHandler
 import com.codechallenge.navigation.getParentNavigator
+import javax.inject.Inject
 
-class HomeActivity : AppCompatActivity(), NavigationProvider {
+class HomeActivity : AppCompatActivity(), NavigationProvider, InjectionNode<HomeActivityComponent> {
+
+    @Inject
+    lateinit var navigatorHandler: NavigatorHandler
+
+    private val _navigatorHandler by lazy {
+        navigatorHandler.setNext(getParentNavigator())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        plug(this)
         with(ActivityHomeBinding.inflate(layoutInflater)) {
             setContentView(root)
         }
@@ -25,7 +38,16 @@ class HomeActivity : AppCompatActivity(), NavigationProvider {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        unplug(this)
+    }
+
     override fun getNavigator(): NavigatorHandler {
-        return getParentNavigator()
+        return _navigatorHandler
+    }
+
+    override fun inject(component: HomeActivityComponent) {
+        component.inject(this)
     }
 }

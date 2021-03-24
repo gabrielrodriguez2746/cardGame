@@ -12,12 +12,12 @@ class RulesNavigationHandler @Inject constructor(
     private val intentDelegate: IntentDelegate
 ) : NavigatorHandler() {
 
-    override fun <T : Any> navigate(subject: T) {
+    override fun <T : Any> navigate(subject: T, sourceIdentifier: Int?) {
         if (subject is RulesFragment) {
             storeHasSeenRules()
             navigateToHome(subject)
         } else {
-            moveToNext(subject)
+            moveToNext(subject, sourceIdentifier)
         }
     }
 
