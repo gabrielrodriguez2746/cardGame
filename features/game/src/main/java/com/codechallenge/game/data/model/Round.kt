@@ -1,3 +1,13 @@
 package com.codechallenge.game.data.model
 
-data class Round(val playerOneCard: PokerCard, val playerTwoCard: PokerCard)
+sealed class Round(open val playerOneCard: PokerCard, open val playerTwoCard: PokerCard) {
+    data class PlayerOneRound(
+        override val playerOneCard: PokerCard,
+        override val playerTwoCard: PokerCard
+    ) : Round(playerOneCard, playerTwoCard)
+
+    data class PlayerTwoRound(
+        override val playerOneCard: PokerCard,
+        override val playerTwoCard: PokerCard
+    ) : Round(playerOneCard, playerTwoCard)
+}
