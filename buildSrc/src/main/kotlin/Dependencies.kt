@@ -62,11 +62,13 @@ object Libraries {
         private object Version {
             const val junit5 = "5.7.1"
             const val mockk = "1.11.0"
+            const val kotest = "4.4.3"
         }
 
         const val mockk = "io.mockk:mockk:${Version.mockk}"
         const val junit5Api = "org.junit.jupiter:junit-jupiter-api:${Version.junit5}"
         const val junit5Engine = "org.junit.jupiter:junit-jupiter-engine:${Version.junit5}"
+        const val kotestCore = "io.kotest:kotest-assertions-core:${Version.kotest}"
 
     }
 

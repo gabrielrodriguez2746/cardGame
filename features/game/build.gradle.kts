@@ -20,5 +20,6 @@ dependencies {
 
     testImplementation(Libraries.Test.mockk)
     testImplementation(Libraries.Test.junit5Api)
+    testImplementation(Libraries.Test.kotestCore)
     testRuntimeOnly(Libraries.Test.junit5Engine)
 }
