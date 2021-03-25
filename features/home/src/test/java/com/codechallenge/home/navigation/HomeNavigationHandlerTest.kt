@@ -25,7 +25,7 @@ internal class HomeNavigationHandlerTest {
 
     @Nested
     @DisplayName("GIVEN subject as fragment and ")
-    inner class WithHomeFragment {
+    inner class WithFragment {
 
         private val subject = mockk<Fragment>()
 
