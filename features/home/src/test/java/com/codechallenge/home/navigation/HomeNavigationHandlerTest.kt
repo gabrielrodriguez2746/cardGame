@@ -64,7 +64,7 @@ internal class HomeNavigationHandlerTest {
         }
     }
 
-    companion object {
+    private companion object {
         private const val RULES_IDENTIFIER = 1
     }
 }
