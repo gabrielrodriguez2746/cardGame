@@ -5,7 +5,11 @@ import javax.inject.Inject
 
 class SuitsPriorityRepository @Inject constructor() {
 
-    private val suitsPriorityList = CardSuit.values().toMutableList().apply { shuffle() }
+    private var suitsPriorityList = CardSuit.values().toMutableList().apply { shuffle() }
 
     fun getSuitsPriority(): List<CardSuit> = suitsPriorityList
+
+    fun clean() {
+        suitsPriorityList = CardSuit.values().toMutableList().apply { shuffle() }
+    }
 }

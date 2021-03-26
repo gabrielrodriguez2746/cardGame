@@ -14,4 +14,8 @@ class GameRoundRepository @Inject constructor() {
     fun addRound(round: Round) {
         gameSummary.add(round)
     }
+
+    fun clean() {
+        gameSummary.clear()
+    }
 }
