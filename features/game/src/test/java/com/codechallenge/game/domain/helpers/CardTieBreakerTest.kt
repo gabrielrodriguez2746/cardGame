@@ -34,7 +34,7 @@ internal class CardTieBreakerTest {
             row(diamond, club, listOf(CardSuit.DIAMOND), PlayedCard.WinnerCard(diamond) to PlayedCard.LooserCard(club)),
             row(club, heart, listOf(CardSuit.CLUB), PlayedCard.WinnerCard(club) to PlayedCard.LooserCard(heart)),
             row(club, diamond, listOf(CardSuit.CLUB), PlayedCard.WinnerCard(club) to PlayedCard.LooserCard(diamond)),
-            row(club, club, listOf(CardSuit.CLUB), PlayedCard.WinnerCard(club) to PlayedCard.LooserCard(club)),
+            row(heart, club, listOf(CardSuit.CLUB), PlayedCard.LooserCard(heart) to PlayedCard.WinnerCard(club)),
         ) { card1, card2, suits, result ->
             with(tieBreaker) {
                 (card1 to card2).tieBreak(suits) shouldBe result

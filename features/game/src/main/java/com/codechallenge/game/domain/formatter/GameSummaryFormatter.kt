@@ -1,6 +1,7 @@
 package com.codechallenge.game.domain.formatter
 
 import com.codechallenge.game.data.model.Round
+import com.codechallenge.game.domain.NUMBER_PLAYERS
 import com.codechallenge.game.domain.model.GameSummaryRound
 import javax.inject.Inject
 
@@ -27,9 +28,5 @@ class GameSummaryFormatter @Inject constructor(
 
     fun List<Round>.toPoints(): Pair<Int, Int> {
         return filterIsInstance<Round.PlayerOneRound>().size * NUMBER_PLAYERS to filterIsInstance<Round.PlayerTwoRound>().size * NUMBER_PLAYERS
-    }
-
-    private companion object {
-        private const val NUMBER_PLAYERS = 2
     }
 }

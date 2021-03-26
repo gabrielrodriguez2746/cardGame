@@ -45,7 +45,7 @@ internal class GetWinnerCardUseCaseTest {
         val highestCard = getPlayerCard(2)
 
         forAll(
-            row(lowestCard to highestCard, PlayedCard.WinnerCard(highestCard) to PlayedCard.LooserCard(lowestCard)),
+            row(lowestCard to highestCard, PlayedCard.LooserCard(lowestCard) to PlayedCard.WinnerCard(highestCard)),
             row(highestCard to lowestCard, PlayedCard.WinnerCard(highestCard) to PlayedCard.LooserCard(lowestCard)),
         ) { input, expected ->
             useCase.execute(input) shouldBe expected

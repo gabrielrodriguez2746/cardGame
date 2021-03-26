@@ -40,11 +40,16 @@ object Libraries {
             const val material = "1.3.0"
             const val appcompat = "1.2.0"
             const val fragments = "1.3.1"
+            const val lifecycle = "2.3.1"
+            const val archTesting = "2.1.0"
         }
 
         const val material = "com.google.android.material:material:${Versions.material}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
         const val fragments = "androidx.fragment:fragment-ktx:${Versions.fragments}"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+        const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+        const val archTesting = "androidx.arch.core:core-testing:${Versions.archTesting}"
     }
 
     object Externals {

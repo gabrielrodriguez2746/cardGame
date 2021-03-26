@@ -15,7 +15,7 @@ class GetWinnerCardUseCase @Inject constructor(
         val (playerOneCard, playerTwoCard) = playerCards
         return when {
             playerOneCard.value > playerTwoCard.value -> PlayedCard.WinnerCard(playerOneCard) to PlayedCard.LooserCard(playerTwoCard)
-            playerOneCard.value < playerTwoCard.value -> PlayedCard.WinnerCard(playerTwoCard) to PlayedCard.LooserCard(playerOneCard)
+            playerOneCard.value < playerTwoCard.value -> PlayedCard.LooserCard(playerOneCard) to PlayedCard.WinnerCard(playerTwoCard)
             else -> with(cardTieBreaker) { playerCards.tieBreak(suitsPriorityRepository.getSuitsPriority()) }
         }
     }

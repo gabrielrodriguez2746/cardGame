@@ -16,7 +16,7 @@ class CardTieBreaker @Inject constructor(
         return with(suits.map { with(suitsCardFormatter) { it.toPlayerCardSuit() } }) {
             when {
                 suitIndex(playerOneCard) < suitIndex(playerTwoCard) -> PlayedCard.WinnerCard(playerOneCard) to PlayedCard.LooserCard(playerTwoCard)
-                else -> PlayedCard.WinnerCard(playerTwoCard) to PlayedCard.LooserCard(playerOneCard)
+                else -> PlayedCard.LooserCard(playerOneCard) to PlayedCard.WinnerCard(playerTwoCard)
             }
         }
     }

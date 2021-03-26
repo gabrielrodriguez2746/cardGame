@@ -62,6 +62,6 @@ internal class GameStateFormatterTest {
 
         with(formatter) {
             gameState.toPlayers()
-        } shouldBe PlayerOne(listOf(card1)) to PlayerTwo(listOf(card2))
+        } shouldBe (PlayerOne(listOf(card1)) to PlayerTwo(listOf(card2)))
     }
 }
