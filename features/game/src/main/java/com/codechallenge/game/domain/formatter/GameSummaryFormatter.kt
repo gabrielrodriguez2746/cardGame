@@ -24,4 +24,12 @@ class GameSummaryFormatter @Inject constructor(
             }
         }
     }
+
+    fun List<Round>.toPoints(): Pair<Int, Int> {
+        return filterIsInstance<Round.PlayerOneRound>().size * NUMBER_PLAYERS to filterIsInstance<Round.PlayerTwoRound>().size * NUMBER_PLAYERS
+    }
+
+    private companion object {
+        private const val NUMBER_PLAYERS = 2
+    }
 }

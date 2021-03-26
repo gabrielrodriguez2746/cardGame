@@ -4,6 +4,8 @@ import com.codechallenge.game.data.model.PokerCard
 import com.codechallenge.game.data.model.Round
 import com.codechallenge.game.domain.model.GameSummaryRound
 import com.codechallenge.game.domain.model.PlayerCard
+import io.kotest.data.blocking.forAll
+import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
@@ -55,6 +57,17 @@ internal class GameSummaryFormatterTest {
 
         with(formatter) {
             input.toSummaryRound() shouldBe expected
+        }
+    }
+
+    @Test
+    fun `WHEN toPoints THEN get expected`() {
+        forAll(
+            row(listOf<Round>(mockk<Round.PlayerOneRound>()), 2 to 0),
+            row(listOf<Round>(mockk<Round.PlayerTwoRound>()), 0 to 2),
+            row(listOf<Round>(mockk<Round.PlayerOneRound>(), mockk<Round.PlayerTwoRound>()), 2 to 2),
+        ) { input, expected ->
+            with(formatter) { input.toPoints() } shouldBe expected
         }
     }
 }
