@@ -22,6 +22,7 @@ dependencies {
     implementation(project(":features:landing"))
     implementation(project(":features:rules"))
     implementation(project(":features:home"))
+    implementation(project(":features:game"))
 
     implementation(Libraries.Android.fragments)
 

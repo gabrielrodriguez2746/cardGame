@@ -18,6 +18,8 @@ dependencies {
     implementation(project(":modules:core:navigation"))
     implementation(project(":modules:core:injector"))
 
+    implementation(project(":features:game"))
+
     implementation(Libraries.Android.appcompat)
     implementation(Libraries.Android.fragments)
 

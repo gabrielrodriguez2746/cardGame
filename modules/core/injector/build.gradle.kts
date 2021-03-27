@@ -10,6 +10,7 @@ dependencies {
 
     implementation(Libraries.Kotlin.stdLib)
     implementation(Libraries.Android.fragments)
+    implementation(Libraries.Java.javaInject)
 
     testImplementation(Libraries.Test.mockk)
     testImplementation(Libraries.Test.junit5Api)

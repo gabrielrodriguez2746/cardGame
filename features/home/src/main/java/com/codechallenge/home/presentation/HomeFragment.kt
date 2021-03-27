@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
             navigateNext(this, R.id.buttonRules)
         }
         _binding?.buttonStart?.setOnClickListener {
-            navigateNext(this)
+            navigateNext(this, R.id.buttonStart)
         }
     }
 

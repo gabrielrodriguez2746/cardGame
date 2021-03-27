@@ -1,11 +1,11 @@
 package com.codechallenge.game.domain.model
 
-import androidx.annotation.DrawableRes
-import com.codechallenge.game.R
+import com.codechallenge.game.presentation.views.CardGameView
+import com.codechallenge.game.presentation.views.CardGameView.Suit
 
-sealed class PlayerCardSuit(@DrawableRes val resource: Int) {
-    object Club : PlayerCardSuit(R.drawable.ic_club)
-    object Diamond : PlayerCardSuit(R.drawable.ic_diamond)
-    object Hearts : PlayerCardSuit(R.drawable.ic_heart)
-    object Spades : PlayerCardSuit(R.drawable.ic_spades)
+sealed class PlayerCardSuit(@Suit val suitId: Int) {
+    object Club : PlayerCardSuit(CardGameView.CLUB)
+    object Diamond : PlayerCardSuit(CardGameView.DIAMOND)
+    object Hearts : PlayerCardSuit(CardGameView.HEARD)
+    object Spades : PlayerCardSuit(CardGameView.SPADE)
 }

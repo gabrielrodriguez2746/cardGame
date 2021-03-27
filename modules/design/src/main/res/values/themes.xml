@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="CardGameAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorOnPrimary">@color/color_on_primary</item>
         <item name="colorPrimaryVariant">@color/color_primary_variant</item>
         <item name="colorOnBackground">@color/color_on_background</item>
@@ -31,6 +32,10 @@
     <style name="ThemeOverlay.CardGameAppTheme.Secondary" parent="">
         <item name="colorPrimary">@color/color_primary_variant</item>
         <item name="colorPrimaryVariant">@color/color_primary</item>
+    </style>
+
+    <style name="ThemeOverlay.CardGameAppTheme.Alternative" parent="">
+        <item name="colorPrimary">@color/color_error</item>
     </style>
 
 </resources>

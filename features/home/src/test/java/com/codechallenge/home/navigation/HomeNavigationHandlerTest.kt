@@ -35,19 +35,19 @@ internal class HomeNavigationHandlerTest {
                 navigationHandler.navigate(subject, -1)
             }
             verify(exactly = 0) {
-                navigationHandler.navigateHomeFragment(any())
+                navigationHandler.navigateToHome(any())
             }
         }
 
         @Test
         fun `match with rules identifier WHEN navigate THEN navigate to home`() {
 
-            every { navigationHandler.navigateHomeFragment(any()) } just runs
+            every { navigationHandler.navigateToHome(any()) } just runs
 
             navigationHandler.navigate(subject, RULES_IDENTIFIER)
 
             verify(exactly = 1) {
-                navigationHandler.navigateHomeFragment(subject)
+                navigationHandler.navigateToHome(subject)
             }
         }
     }
@@ -60,7 +60,7 @@ internal class HomeNavigationHandlerTest {
             navigationHandler.navigate(subject, RULES_IDENTIFIER)
         }
         verify(exactly = 0) {
-            navigationHandler.navigateHomeFragment(any())
+            navigationHandler.navigateToHome(any())
         }
     }
 
