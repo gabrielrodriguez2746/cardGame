@@ -31,6 +31,10 @@ object Plugins {
 
 object Libraries {
 
+    object Java {
+        const val javaInject = "javax.inject:javax.inject:1"
+    }
+
     object Kotlin {
         const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin"
     }

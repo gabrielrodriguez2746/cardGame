@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardgame_card_font_size">8sp</dimen>
+    <dimen name="cardgame_card_margin">2dp</dimen>
+    <dimen name="cardgame_card_height">80dp</dimen>
+    <dimen name="cardgame_user_icon_height">48dp</dimen>
+</resources>

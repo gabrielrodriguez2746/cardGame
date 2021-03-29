@@ -14,6 +14,11 @@ android {
 dependencies {
 
     implementation(Libraries.Kotlin.stdLib)
+    implementation(project(":modules:design"))
+    implementation(project(":modules:core:injector"))
+
+    implementation(Libraries.Android.appcompat)
+    implementation(Libraries.Android.fragments)
 
     implementation(Libraries.Android.viewModel)
     implementation(Libraries.Android.liveData)

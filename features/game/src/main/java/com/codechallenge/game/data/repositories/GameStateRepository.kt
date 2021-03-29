@@ -2,8 +2,10 @@ package com.codechallenge.game.data.repositories
 
 import com.codechallenge.game.data.model.GameState
 import com.codechallenge.game.data.model.PlayersGameState
+import com.codechallenge.injector.PerFragment
 import javax.inject.Inject
 
+@PerFragment
 class GameStateRepository @Inject constructor() {
 
     private var _gameState = GameState(

@@ -18,8 +18,10 @@ import com.codechallenge.game.domain.usecase.HasGameEndUseCase
 import com.codechallenge.game.domain.usecase.ResetGameStateUseCase
 import com.codechallenge.game.domain.usecase.UpdateGameRoundResultUseCase
 import com.codechallenge.game.domain.usecase.UpdateGameStateUseCase
+import com.codechallenge.injector.PerFragment
 import javax.inject.Inject
 
+@PerFragment
 class GameViewModel @Inject constructor(
     private val getPlayersCardUseCase: GetPlayersCardUseCase,
     private val getSuitsPriorityUseCase: GetSuitsPriorityUseCase,
