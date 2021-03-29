@@ -6,8 +6,10 @@ import com.codechallenge.game.domain.formatter.GameSummaryFormatter
 import com.codechallenge.game.domain.model.GameSummary
 import com.codechallenge.game.domain.model.GameSummaryRound
 import io.kotest.matchers.shouldBe
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -30,10 +32,10 @@ internal class GetGameSummaryUseCaseTest {
         val round2 = mockk<Round.PlayerTwoRound>()
         val expectedRound2 = mockk<GameSummaryRound.PlayerTwoRound>()
 
-        every { gameRoundRepository.getGameSummary() } returns listOf(round1, round2)
+        coEvery { gameRoundRepository.getGameSummary() } returns listOf(round1, round2)
         every { with(gameSummaryFormatter) { round1.toSummaryRound() } } returns expectedRound1
         every { with(gameSummaryFormatter) { round2.toSummaryRound() } } returns expectedRound2
 
-        useCase.execute() shouldBe GameSummary(listOf(expectedRound1, expectedRound2))
+        runBlocking { useCase.execute() } shouldBe GameSummary(listOf(expectedRound1, expectedRound2))
     }
 }

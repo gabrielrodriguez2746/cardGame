@@ -6,8 +6,10 @@ import com.codechallenge.game.data.repositories.GameStateRepository
 import com.codechallenge.game.domain.formatter.GameStateFormatter
 import com.codechallenge.game.domain.model.Player
 import io.kotest.matchers.shouldBe
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -35,8 +37,8 @@ internal class GetGameStateUseCaseTest {
 
         every { with(gameStateFormatter) { gameState.toPlayers() } } returns expected
 
-        every { gameStateRepository.getGameState() } returns gameState
+        coEvery { gameStateRepository.getGameState() } returns gameState
 
-        useCase.execute() shouldBe expected
+        runBlocking { useCase.execute() } shouldBe expected
     }
 }

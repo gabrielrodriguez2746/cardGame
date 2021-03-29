@@ -5,19 +5,19 @@ import com.codechallenge.injector.PerFragment
 import javax.inject.Inject
 
 @PerFragment
-class GameRoundRepository @Inject constructor() {
+class GameRoundRepository @Inject constructor() : RoundRepository {
 
     private val gameSummary = mutableListOf<Round>()
 
-    fun getGameSummary(): List<Round> {
+    override suspend fun getGameSummary(): List<Round> {
         return gameSummary
     }
 
-    fun addRound(round: Round) {
+    override suspend fun addRound(round: Round) {
         gameSummary.add(round)
     }
 
-    fun clean() {
+    override suspend fun clean() {
         gameSummary.clear()
     }
 }

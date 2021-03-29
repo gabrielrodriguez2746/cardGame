@@ -8,9 +8,10 @@ import com.codechallenge.game.domain.model.PlayedCard
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.data.blocking.forAll
 import io.kotest.data.row
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -40,8 +41,8 @@ internal class UpdateGameRoundResultUseCaseTest {
             row(winnerCard to looserCard, Round.PlayerOneRound(winnerPokerCard, looserPokerCard)),
             row(looserCard to winnerCard, Round.PlayerTwoRound(winnerPokerCard, looserPokerCard)),
         ) { input, expected ->
-            useCase.execute(input)
-            verify { gameRoundRepository.addRound(expected) }
+            runBlocking { useCase.execute(input) }
+            coVerify { gameRoundRepository.addRound(expected) }
         }
     }
 
@@ -50,7 +51,7 @@ internal class UpdateGameRoundResultUseCaseTest {
         val winnerCard = mockk<PlayedCard.WinnerCard>()
 
         shouldThrow<IllegalArgumentException> {
-            useCase.execute(winnerCard to winnerCard)
+            runBlocking { useCase.execute(winnerCard to winnerCard) }
         }
     }
 
@@ -59,7 +60,7 @@ internal class UpdateGameRoundResultUseCaseTest {
         val looserCard = mockk<PlayedCard.LooserCard>()
 
         shouldThrow<IllegalArgumentException> {
-            useCase.execute(looserCard to looserCard)
+            runBlocking { useCase.execute(looserCard to looserCard) }
         }
     }
 }

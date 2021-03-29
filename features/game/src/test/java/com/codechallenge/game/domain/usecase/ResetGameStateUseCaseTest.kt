@@ -3,8 +3,9 @@ package com.codechallenge.game.domain.usecase
 import com.codechallenge.game.data.repositories.GameRoundRepository
 import com.codechallenge.game.data.repositories.GameStateRepository
 import com.codechallenge.game.data.repositories.SuitsPriorityRepository
+import io.mockk.coVerify
 import io.mockk.mockk
-import io.mockk.verify
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 internal class ResetGameStateUseCaseTest {
@@ -22,9 +23,9 @@ internal class ResetGameStateUseCaseTest {
     @Test
     fun `WHEN execute THEN call clean in all dependencies`() {
 
-        useCase.execute()
+        runBlocking { useCase.execute() }
 
-        verify(exactly = 1) {
+        coVerify(exactly = 1) {
             gameRoundRepository.clean()
             gameStateRepository.clean()
             suitePriorityRepository.clean()

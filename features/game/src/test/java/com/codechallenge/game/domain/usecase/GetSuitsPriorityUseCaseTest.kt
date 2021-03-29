@@ -5,8 +5,10 @@ import com.codechallenge.game.data.repositories.SuitsPriorityRepository
 import com.codechallenge.game.domain.formatter.SuitsCardFormatter
 import com.codechallenge.game.domain.model.PlayerCardSuit
 import io.kotest.matchers.shouldBe
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -27,10 +29,10 @@ internal class GetSuitsPriorityUseCaseTest {
         val suitsList = listOf(CardSuit.HEARTS, CardSuit.CLUB)
         val heart = PlayerCardSuit.Hearts
         val club = PlayerCardSuit.Club
-        every { suitsPriorityRepository.getSuitsPriority() } returns suitsList
+        coEvery { suitsPriorityRepository.getSuitsPriority() } returns suitsList
         every { with(suitsCardFormatter) { CardSuit.HEARTS.toPlayerCardSuit() } } returns heart
         every { with(suitsCardFormatter) { CardSuit.CLUB.toPlayerCardSuit() } } returns club
 
-        useCase.execute() shouldBe listOf(heart, club)
+        runBlocking { useCase.execute() } shouldBe listOf(heart, club)
     }
 }

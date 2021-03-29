@@ -4,6 +4,7 @@ import com.codechallenge.game.data.model.GameState
 import com.codechallenge.game.data.model.PlayersGameState
 import io.kotest.matchers.shouldBe
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -16,14 +17,14 @@ internal class GameStateRepositoryTest {
     }
 
     @Test
-    fun `GIVEN updateGameState WHEN getGameState THEN contains GameState`() {
+    fun `GIVEN updateGameState WHEN getGameState THEN contains GameState`() = runBlocking {
         val gameState = mockk<GameState>()
         repository.updateGameState(gameState)
         repository.getGameState() shouldBe gameState
     }
 
     @Test
-    fun `GIVEN no updateGameState WHEN getGameState THEN get empty default state`() {
+    fun `GIVEN no updateGameState WHEN getGameState THEN get empty default state`() = runBlocking {
         repository.getGameState() shouldBe GameState(
             listOf(
                 PlayersGameState.PlayerOneState(emptyList()),
@@ -33,7 +34,7 @@ internal class GameStateRepositoryTest {
     }
 
     @Test
-    fun `GIVEN updateGameState WHEN clean THEN get empty default state`() {
+    fun `GIVEN updateGameState WHEN clean THEN get empty default state`() = runBlocking {
         val gameState = mockk<GameState>()
         repository.updateGameState(gameState)
 

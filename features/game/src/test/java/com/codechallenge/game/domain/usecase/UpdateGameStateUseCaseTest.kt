@@ -4,9 +4,10 @@ import com.codechallenge.game.data.model.GameState
 import com.codechallenge.game.data.repositories.GameStateRepository
 import com.codechallenge.game.domain.formatter.GameStateFormatter
 import com.codechallenge.game.domain.model.Player
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 internal class UpdateGameStateUseCaseTest {
@@ -22,8 +23,8 @@ internal class UpdateGameStateUseCaseTest {
 
         every { with(gameStateFormatter) { input.toGameState() } } returns gameState
 
-        useCase.execute(input)
+        runBlocking { useCase.execute(input) }
 
-        verify(exactly = 1) { gameStateRepository.updateGameState(gameState) }
+        coVerify(exactly = 1) { gameStateRepository.updateGameState(gameState) }
     }
 }

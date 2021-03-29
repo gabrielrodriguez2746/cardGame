@@ -16,20 +16,25 @@ import com.codechallenge.game.domain.usecase.HasGameEndUseCase
 import com.codechallenge.game.domain.usecase.ResetGameStateUseCase
 import com.codechallenge.game.domain.usecase.UpdateGameRoundResultUseCase
 import com.codechallenge.game.domain.usecase.UpdateGameStateUseCase
-import com.codechallenge.game.presentation.GameViewModel.GameState
 import io.kotest.matchers.shouldBe
-import io.mockk.every
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.just
 import io.mockk.mockk
 import io.mockk.runs
-import io.mockk.verify
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(InstantExecutorExtension::class)
-internal class GameViewModelTest {
+@ExperimentalCoroutinesApi
+internal class CardsGameViewModelTest {
+
+    private val testCoroutineDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 
     private val getPlayersCardUseCase: GetPlayersCardUseCase = mockk()
     private val getSuitsPriorityUseCase: GetSuitsPriorityUseCase = mockk()
@@ -42,11 +47,11 @@ internal class GameViewModelTest {
     private val hasGameEndUseCase: HasGameEndUseCase = mockk()
     private val getGameSummaryUseCase: GetGameSummaryUseCase = mockk()
 
-    private lateinit var viewModel: GameViewModel
+    private lateinit var viewModel: CardsGameViewModel
 
     @BeforeEach
     fun setUp() {
-        viewModel = GameViewModel(
+        viewModel = CardsGameViewModel(
             getPlayersCardUseCase,
             getSuitsPriorityUseCase,
             updateGameStateUseCase,
@@ -56,8 +61,14 @@ internal class GameViewModelTest {
             getRoundSummaryPoints,
             resetGameStateUseCase,
             hasGameEndUseCase,
-            getGameSummaryUseCase
+            getGameSummaryUseCase,
+            testCoroutineDispatcher
         )
+    }
+
+    @AfterEach
+    fun setup() {
+        testCoroutineDispatcher.cleanupTestCoroutines()
     }
 
     @Test
@@ -66,9 +77,9 @@ internal class GameViewModelTest {
         val playerTwo = mockk<Player>()
         val players = playerOne to playerTwo
         val priorities = listOf<PlayerCardSuit>()
-        every { updateGameStateUseCase.execute(any()) } just runs
-        every { getPlayersCardUseCase.execute() } returns players
-        every { getSuitsPriorityUseCase.execute() } returns priorities
+        coEvery { updateGameStateUseCase.execute(any()) } just runs
+        coEvery { getPlayersCardUseCase.execute() } returns players
+        coEvery { getSuitsPriorityUseCase.execute() } returns priorities
 
         viewModel.onStart()
 
@@ -77,7 +88,7 @@ internal class GameViewModelTest {
             playerTwo,
             priorities
         )
-        verify(exactly = 1) { updateGameStateUseCase.execute(players) }
+        coVerify(exactly = 1) { updateGameStateUseCase.execute(players) }
     }
 
     @Test
@@ -87,7 +98,7 @@ internal class GameViewModelTest {
         val playerOne = Player.PlayerOne(listOf(card1))
         val playerTwo = Player.PlayerTwo(listOf(card2))
         val players = playerOne to playerTwo
-        every { getGameStateUseCase.execute() } returns players
+        coEvery { getGameStateUseCase.execute() } returns players
 
         viewModel.onHit()
 
@@ -105,19 +116,19 @@ internal class GameViewModelTest {
 
         @BeforeEach
         fun setup() {
-            every { getGameStateUseCase.execute() } returns players
+            coEvery { getGameStateUseCase.execute() } returns players
         }
 
         @Test
         fun `GIVEN round for player one WHEN onRound THEN RoundWinnerCalculated state`() {
 
             val winnerResult = PlayedCard.WinnerCard(card1) to PlayedCard.LooserCard(card2)
-            every { updateGameRoundResultUseCase.execute(any()) } just runs
-            every { getWinnerCardUseCase.execute(card1 to card2) } returns winnerResult
+            coEvery { updateGameRoundResultUseCase.execute(any()) } just runs
+            coEvery { getWinnerCardUseCase.execute(card1 to card2) } returns winnerResult
 
             viewModel.onRound()
 
-            verify(exactly = 1) { updateGameRoundResultUseCase.execute(winnerResult) }
+            coVerify(exactly = 1) { updateGameRoundResultUseCase.execute(winnerResult) }
 
             viewModel.gameState.value shouldBe GameState.RoundWinnerCalculated(true)
         }
@@ -126,12 +137,12 @@ internal class GameViewModelTest {
         fun `GIVEN round for player two WHEN onRound THEN RoundWinnerCalculated state`() {
 
             val winnerResult = PlayedCard.LooserCard(card1) to PlayedCard.WinnerCard(card2)
-            every { updateGameRoundResultUseCase.execute(any()) } just runs
-            every { getWinnerCardUseCase.execute(card1 to card2) } returns winnerResult
+            coEvery { updateGameRoundResultUseCase.execute(any()) } just runs
+            coEvery { getWinnerCardUseCase.execute(card1 to card2) } returns winnerResult
 
             viewModel.onRound()
 
-            verify(exactly = 1) { updateGameRoundResultUseCase.execute(winnerResult) }
+            coVerify(exactly = 1) { updateGameRoundResultUseCase.execute(winnerResult) }
 
             viewModel.gameState.value shouldBe GameState.RoundWinnerCalculated(false)
         }
@@ -151,9 +162,9 @@ internal class GameViewModelTest {
         val expectedPlayerOne = Player.PlayerOne(listOf(card1))
         val expectedPlayerTwo = Player.PlayerTwo(listOf(card2))
 
-        every { updateGameStateUseCase.execute(any()) } just runs
-        every { getGameStateUseCase.execute() } returns players
-        every { getRoundSummaryPoints.execute() } returns (playerOneScore to playerTwoScore)
+        coEvery { updateGameStateUseCase.execute(any()) } just runs
+        coEvery { getGameStateUseCase.execute() } returns players
+        coEvery { getRoundSummaryPoints.execute() } returns (playerOneScore to playerTwoScore)
 
         viewModel.onWinnerCardDisplayed()
 
@@ -164,7 +175,7 @@ internal class GameViewModelTest {
             playerTwoScore
         )
 
-        verify(exactly = 1) {
+        coVerify(exactly = 1) {
             updateGameStateUseCase.execute(
                 expectedPlayerOne to expectedPlayerTwo
             )
@@ -176,7 +187,7 @@ internal class GameViewModelTest {
 
         @Test
         fun `GIVEN game no ended WHEN onNewRoundStart THEN do not update new state`() {
-            every { hasGameEndUseCase.execute() } returns false
+            coEvery { hasGameEndUseCase.execute() } returns false
 
             viewModel.onNewRoundStart()
 
@@ -186,8 +197,8 @@ internal class GameViewModelTest {
         @Test
         fun `GIVEN game ended WHEN onNewRoundStart THEN GameFinished state`() {
             val summary = mockk<GameSummary>()
-            every { hasGameEndUseCase.execute() } returns true
-            every { getGameSummaryUseCase.execute() } returns summary
+            coEvery { hasGameEndUseCase.execute() } returns true
+            coEvery { getGameSummaryUseCase.execute() } returns summary
 
             viewModel.onNewRoundStart()
 
@@ -197,7 +208,7 @@ internal class GameViewModelTest {
 
     @Test
     fun `WHEN onReset THEN reset state`() {
-        every { resetGameStateUseCase.execute() } just runs
+        coEvery { resetGameStateUseCase.execute() } just runs
 
         viewModel.onReset()
 

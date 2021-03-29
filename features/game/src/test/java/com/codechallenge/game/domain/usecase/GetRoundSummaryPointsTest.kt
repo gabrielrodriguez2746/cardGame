@@ -4,8 +4,10 @@ import com.codechallenge.game.data.model.Round
 import com.codechallenge.game.data.repositories.GameRoundRepository
 import com.codechallenge.game.domain.formatter.GameSummaryFormatter
 import io.kotest.matchers.shouldBe
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -25,9 +27,9 @@ internal class GetRoundSummaryPointsTest {
     fun `WHEN execute THEN get expected`() {
         val roundData = listOf<Round>(mockk(), mockk())
         val expected = 2 to 2
-        every { gameRoundRepository.getGameSummary() } returns roundData
+        coEvery { gameRoundRepository.getGameSummary() } returns roundData
         every { with(gameSummaryFormatter) { roundData.toPoints() } } returns expected
 
-        useCase.execute() shouldBe expected
+        runBlocking { useCase.execute() } shouldBe expected
     }
 }

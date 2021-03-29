@@ -56,6 +56,13 @@
         <item name="iconPadding">@dimen/cardgame_button_m_icon_padding</item>
     </style>
 
+    <style name="Style.CardGame.Button.M.Alternative">
+        <item name="backgroundTint">@color/color_error</item>
+    </style>
+    <style name="Style.CardGame.Button.M.Secondary">
+        <item name="backgroundTint">@color/color_primary_variant</item>
+    </style>
+
     <style name="Style.CardGame.Button.L">
         <item name="android:minHeight">@dimen/cardgame_button_l_min_height</item>
         <item name="android:minWidth">@dimen/cardgame_button_l_min_width</item>
@@ -63,5 +70,49 @@
         <item name="iconSize">@dimen/cardgame_button_l_icon_size</item>
         <item name="iconPadding">@dimen/cardgame_button_l_icon_padding</item>
     </style>
+
+    <!-- dialog -->
+    <style name="Styles.CardGame.Dialog" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAppearance.MaterialComponents.MediumComponent</item>
+        <item name="backgroundInsetStart">@dimen/cardgame_spacing_xxs</item>
+        <item name="backgroundInsetEnd">@dimen/cardgame_spacing_xxs</item>
+    </style>
+
+    <style name="Styles.CardGame.Dialog.ButtonBar" parent="Widget.AppCompat.ButtonBar.AlertDialog"/>
+
+    <style name="Styles.CardGame.Dialog.Title.Panel" parent="MaterialAlertDialog.MaterialComponents.Title.Panel.CenterStacked">
+        <item name="android:layout_marginTop">@dimen/cardgame_spacing_m</item>
+        <item name="android:paddingTop">@dimen/cardgame_spacing_zero</item>
+    </style>
+
+    <style name="Styles.CardGame.Dialog.Title.Icon" parent="MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/cardgame_spacing_s</item>
+        <item name="android:layout_marginTop">@dimen/cardgame_spacing_s</item>
+    </style>
+
+    <style name="Styles.CardGame.Dialog.Title.Text" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.CardGame.HeadlineS.Bold</item>
+        <item name="android:textColor">@color/color_primary_dark</item>
+    </style>
+
+    <style name="Styles.CardGame.Dialog.Body.Text" parent="android:Widget.TextView">
+        <item name="android:textAppearance">@style/TextAppearance.CardGame.BodyL</item>
+        <item name="android:textColor">@color/color_primary</item>
+    </style>
+
+    <style name="Styles.CardGame.Dialog.Button.Positive" parent="Style.CardGame.Button.M">
+        <item name="android:layout_marginStart">@dimen/cardgame_spacing_xs</item>
+    </style>
+
+    <style name="Styles.CardGame.Dialog.Button.Neutral" parent="Style.CardGame.Button.M.Secondary"/>
+
+    <style name="Styles.CardGame.Dialog.Button.Negative" parent="Style.CardGame.Button.M.Alternative"/>
     
 </resources>

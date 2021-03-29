@@ -6,7 +6,7 @@ import com.codechallenge.injector.NodeComponent
 import com.codechallenge.injector.PerFragment
 import dagger.Component
 
-@Component
+@Component(modules = [GameFragmentModule::class])
 @PerFragment
 interface GameFragmentComponent : NodeComponent {
     @Component.Factory

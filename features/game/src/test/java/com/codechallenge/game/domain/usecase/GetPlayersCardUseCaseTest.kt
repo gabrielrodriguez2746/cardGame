@@ -8,8 +8,10 @@ import com.codechallenge.game.domain.helpers.PlayerCardSplitter
 import com.codechallenge.game.domain.model.Player
 import com.codechallenge.game.domain.model.PlayerCard
 import io.kotest.matchers.shouldBe
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -38,12 +40,12 @@ internal class GetPlayersCardUseCaseTest {
         val pokerCard1 = mockk<PokerCard>()
         val pokerCard2 = mockk<PokerCard>()
         val repositoryData = listOf(pokerCard1, pokerCard2)
-        every { cardsGameRepository.getSetOfCard() } returns repositoryData
+        coEvery { cardsGameRepository.getSetOfCard() } returns repositoryData
         every { with(cardShuffler) { repositoryData.shuffleDeck() } } returns repositoryData
         every { with(playerCardFormatter) { pokerCard1.toPlayerCard() } } returns expectedPlayer1Card
         every { with(playerCardFormatter) { pokerCard2.toPlayerCard() } } returns expectedPlayer2Card
         every { with(playerCardSplitter) { expectedCards.split() } } returns expectedPairOfCards
 
-        useCase.execute() shouldBe result
+        runBlocking { useCase.execute() } shouldBe result
     }
 }

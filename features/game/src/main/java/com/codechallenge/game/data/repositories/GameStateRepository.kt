@@ -6,7 +6,7 @@ import com.codechallenge.injector.PerFragment
 import javax.inject.Inject
 
 @PerFragment
-class GameStateRepository @Inject constructor() {
+class GameStateRepository @Inject constructor() : StateRepository {
 
     private var _gameState = GameState(
         listOf(
@@ -15,15 +15,15 @@ class GameStateRepository @Inject constructor() {
         )
     )
 
-    fun getGameState(): GameState {
+    override suspend fun getGameState(): GameState {
         return _gameState
     }
 
-    fun updateGameState(state: GameState) {
+    override suspend fun updateGameState(state: GameState) {
         _gameState = state
     }
 
-    fun clean() {
+    override suspend fun clean() {
         _gameState = GameState(
             listOf(
                 PlayersGameState.PlayerOneState(emptyList()),

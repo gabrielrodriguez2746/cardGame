@@ -40,6 +40,10 @@
         <item name="android:letterSpacing">@dimen/cardgame_headline_s_letter_spacing</item>
     </style>
 
+    <style name="TextAppearance.CardGame.HeadlineS.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextAppearance.CardGame.SubtitleL">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
