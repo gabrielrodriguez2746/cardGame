@@ -15,15 +15,19 @@ import com.codechallenge.game.databinding.FragmentGameBinding
 import com.codechallenge.game.di.GameFragmentComponent
 import com.codechallenge.game.presentation.GameViewModel.GameState
 import com.codechallenge.game.presentation.views.CardGameView
+import com.codechallenge.injector.NamedInjectionNode
+import com.codechallenge.injector.NodeComponent
 import com.codechallenge.injector.SaveStateInjectionNode
 import com.codechallenge.injector.plug
+import com.codechallenge.injector.toTypedComponent
 import com.codechallenge.injector.unplug
 import com.google.android.material.transition.MaterialFade
 import com.google.android.material.transition.MaterialFadeThrough
 import javax.inject.Inject
 
-class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent> {
+class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent>, NamedInjectionNode {
 
+    override val identifier: String get() = GameFragment::class.java.simpleName
     override var saveState: Boolean = false
 
     @Inject
@@ -81,10 +85,6 @@ class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent> {
         unplug(this)
         _binding = null
         saveState = false
-    }
-
-    override fun inject(component: GameFragmentComponent) {
-        component.inject(this)
     }
 
     private fun setGameResetState() {
@@ -201,5 +201,9 @@ class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent> {
         }
         TransitionManager.beginDelayedTransition(binding.root, animation)
         binding.textViewNotifications.show()
+    }
+
+    override fun inject(component: NodeComponent) {
+        component.toTypedComponent<GameFragmentComponent>().inject(this)
     }
 }

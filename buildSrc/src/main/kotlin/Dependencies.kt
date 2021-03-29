@@ -59,7 +59,7 @@ object Libraries {
     object Externals {
 
         private object Versions {
-            const val dagger = "2.25.3"
+            const val dagger = "2.33"
         }
 
         const val dagger = "com.google.dagger:dagger:${Versions.dagger}"

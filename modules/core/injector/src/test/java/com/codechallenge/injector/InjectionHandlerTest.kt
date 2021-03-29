@@ -1,17 +1,17 @@
 package com.codechallenge.injector
 
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import kotlin.reflect.KClass
 
 class InjectionHandlerTest {
 
     @Test
     fun `GIVEN no handler to plug WHEN plug THEN throw exception and call all handlers`() {
-        val subject = mockk<InjectionNode<NodeComponent>>()
+        val subject = mockk<InjectionNode<NodeComponent>>(relaxed = true)
         val handlerA = spyk(createHandler())
         val handlerB = spyk(createHandler())
         val handlerC = spyk(createHandler())
@@ -28,7 +28,7 @@ class InjectionHandlerTest {
 
     @Test
     fun `GIVEN no handler to unplug WHEN unplug THEN throw exception and call all handlers`() {
-        val subject = mockk<InjectionNode<NodeComponent>>()
+        val subject = mockk<InjectionNode<NodeComponent>>(relaxed = true)
         val handlerA = spyk(createHandler())
         val handlerB = spyk(createHandler())
         val handlerC = spyk(createHandler())
@@ -45,9 +45,12 @@ class InjectionHandlerTest {
 
     @Test
     fun `GIVEN one valid handler to plug WHEN plug THEN handler called until handling position`() {
-        val subject = mockk<InjectionNode<NodeComponent>>()
+        val expectedIdentifier = "I am the one"
+        val subject = mockk<InjectionNode<NodeComponent>> {
+            every { identifier } returns expectedIdentifier
+        }
         val handlerA = spyk(createHandler())
-        val handlerB = spyk(createHandler(InjectionNode::class))
+        val handlerB = spyk(createHandler(nodeIdentifier = expectedIdentifier))
         val handlerC = spyk(createHandler())
         val handler = handlerA.setNext(handlerB).setNext(handlerC)
 
@@ -64,9 +67,12 @@ class InjectionHandlerTest {
 
     @Test
     fun `GIVEN one valid handler to unplug WHEN unplug THEN handler called until handling position`() {
-        val subject = mockk<InjectionNode<NodeComponent>>()
+        val expectedIdentifier = "I am the one"
+        val subject = mockk<InjectionNode<NodeComponent>> {
+            every { identifier } returns expectedIdentifier
+        }
         val handlerA = spyk(createHandler())
-        val handlerB = spyk(createHandler(InjectionNode::class))
+        val handlerB = spyk(createHandler(nodeIdentifier = expectedIdentifier))
         val handlerC = spyk(createHandler())
         val handler = handlerA.setNext(handlerB).setNext(handlerC)
 
@@ -81,15 +87,22 @@ class InjectionHandlerTest {
         }
     }
 
-    private fun createHandler(kClass: KClass<*>? = null) =
-        object : InjectionHandler() {
+    private fun createHandler(
+        nodeIdentifier: String = "nodeIdentifier",
+        componentFactory: NodeComponentFactory<NodeComponent> = mockk()
+    ): InjectionHandler {
+        return object : InjectionHandler() {
+
+            override var nodeIdentifier: String = nodeIdentifier
+            override var componentFactory: NodeComponentFactory<NodeComponent> = componentFactory
 
             override fun <T : NodeComponent> plug(subject: InjectionNode<T>) {
-                if (kClass?.isInstance(subject) != true) plugNext(subject)
+                if (!subject.canHandle()) plugNext(subject)
             }
 
             override fun <T : NodeComponent> unplug(subject: InjectionNode<T>) {
-                if (kClass?.isInstance(subject) != true) unPlugNext(subject)
+                if (!subject.canHandle()) unPlugNext(subject)
             }
         }
+    }
 }

@@ -22,3 +22,7 @@ fun <T : NodeComponent> Fragment.unplug(subject: InjectionNode<T>) {
 fun Activity.getParentInjectionHandler(): InjectionHandler {
     return (applicationContext as InjectionProvider).getInjectionHandler()
 }
+
+inline fun <reified T : NodeComponent> NodeComponent.toTypedComponent(): T {
+    return this as T
+}
