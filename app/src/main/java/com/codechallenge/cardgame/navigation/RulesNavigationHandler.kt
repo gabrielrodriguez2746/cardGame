@@ -1,34 +1,36 @@
 package com.codechallenge.cardgame.navigation
 
+import android.content.Intent
 import com.codechallenge.cardgame.storage.HAS_SEEN_RULES
 import com.codechallenge.cardgame.storage.LocalStorageDataSource
 import com.codechallenge.home.presentation.HomeActivity
 import com.codechallenge.navigation.NavigatorHandler
-import com.codechallenge.rules.presentation.RulesFragment
+import com.codechallenge.navigation.NavigatorSubject
+import com.codechallenge.rules.presentation.RulesActivity
 import javax.inject.Inject
 
 class RulesNavigationHandler @Inject constructor(
-    private val localStorageDataSource: LocalStorageDataSource,
-    private val intentDelegate: IntentDelegate
+    private val localStorageDataSource: LocalStorageDataSource
 ) : NavigatorHandler() {
 
-    override fun <T : Any> navigate(subject: T, sourceIdentifier: Int?) {
-        if (subject is RulesFragment) {
+    override fun <T : NavigatorSubject> navigate(subject: T, vararg args: Any) {
+        val context = subject.getNavigatorContext()
+        if (context is RulesActivity) {
             storeHasSeenRules()
-            navigateToHome(subject)
+            navigateToHome(context)
         } else {
-            moveToNext(subject, sourceIdentifier)
-        }
-    }
-
-    private fun navigateToHome(subject: RulesFragment) {
-        with(subject.requireActivity()) {
-            startActivity(intentDelegate.getIntent(this, HomeActivity::class.java))
-            finish()
+            moveToNext(subject, *args)
         }
     }
 
     private fun storeHasSeenRules() {
         localStorageDataSource.savePreference(HAS_SEEN_RULES, true)
+    }
+
+    internal fun navigateToHome(subject: RulesActivity) {
+        with(subject) {
+            startActivity(Intent(subject, HomeActivity::class.java))
+            finish()
+        }
     }
 }

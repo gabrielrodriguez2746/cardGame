@@ -1,18 +1,16 @@
 package com.codechallenge.cardgame.navigation
 
-import android.content.Intent
+import android.app.Activity
 import com.codechallenge.cardgame.storage.HAS_SEEN_RULES
 import com.codechallenge.cardgame.storage.LocalStorageDataSource
-import com.codechallenge.home.presentation.HomeActivity
 import com.codechallenge.landing.presentation.LandingActivity
-import com.codechallenge.rules.presentation.RulesActivity
+import com.codechallenge.navigation.NavigatorSubject
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import io.mockk.runs
-import io.mockk.slot
+import io.mockk.spyk
 import io.mockk.verify
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -20,47 +18,45 @@ import org.junit.jupiter.api.assertThrows
 internal class LandingNavigationHandlerTest {
 
     private val localStorageDataSource: LocalStorageDataSource = mockk()
-    private val intentDelegate: IntentDelegate = mockk()
     private lateinit var navigationHandler: LandingNavigationHandler
 
     @BeforeEach
     fun setUp() {
-        navigationHandler = LandingNavigationHandler(localStorageDataSource, intentDelegate)
+        navigationHandler = spyk(LandingNavigationHandler(localStorageDataSource))
+        every { navigationHandler.navigateToHome(any()) } just runs
+        every { navigationHandler.navigateToRules(any()) } just runs
     }
 
     @Test
     fun `GIVEN landing activity subject and has not seen rules WHEN navigate THEN navigate to rules`() {
-        val intentSlot = slot<Intent>()
-        val intent = mockk<Intent>()
-        val subject = mockk<LandingActivity>(relaxUnitFun = true) {
-            every { startActivity(capture(intentSlot)) } just runs
-        }
-        every { intentDelegate.getIntent(subject, RulesActivity::class.java) } returns intent
         every { localStorageDataSource.getPreference(HAS_SEEN_RULES, any()) } returns false
+        val context = mockk<LandingActivity>()
+        val subject = mockk<NavigatorSubject>(relaxUnitFun = true) {
+            every { getNavigatorContext() } returns context
+        }
         navigationHandler.navigate(subject)
 
-        Assertions.assertEquals(intentSlot.captured, intent)
-        verify { subject.finish() }
+        verify { navigationHandler.navigateToRules(context) }
     }
 
     @Test
     fun `GIVEN landing activity subject and has seen rules WHEN navigate THEN navigate to home`() {
-        val intentSlot = slot<Intent>()
-        val intent = mockk<Intent>()
-        val subject = mockk<LandingActivity>(relaxUnitFun = true) {
-            every { startActivity(capture(intentSlot)) } just runs
-        }
-        every { intentDelegate.getIntent(subject, HomeActivity::class.java) } returns intent
         every { localStorageDataSource.getPreference(HAS_SEEN_RULES, any()) } returns true
+        val context = mockk<LandingActivity>()
+        val subject = mockk<NavigatorSubject>(relaxUnitFun = true) {
+            every { getNavigatorContext() } returns context
+        }
         navigationHandler.navigate(subject)
 
-        Assertions.assertEquals(intentSlot.captured, intent)
-        verify { subject.finish() }
+        verify { navigationHandler.navigateToHome(context) }
     }
 
     @Test
     fun `GIVEN no landing activity as subject and no more handlers WHEN navigate THEN throw exception`() {
-        val subject = mockk<RulesActivity>()
+        val context = mockk<Activity>()
+        val subject = mockk<NavigatorSubject>(relaxUnitFun = true) {
+            every { getNavigatorContext() } returns context
+        }
 
         assertThrows<IllegalStateException> {
             navigationHandler.navigate(subject)

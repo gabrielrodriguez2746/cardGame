@@ -25,10 +25,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding?.buttonRules?.setOnClickListener {
-            navigateNext(this, R.id.buttonRules)
+            navigateNext(R.id.buttonRules)
         }
         _binding?.buttonStart?.setOnClickListener {
-            navigateNext(this, R.id.buttonStart)
+            navigateNext(R.id.buttonStart)
         }
     }
 
