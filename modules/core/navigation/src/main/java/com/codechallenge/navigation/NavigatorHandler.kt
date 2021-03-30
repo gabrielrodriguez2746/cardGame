@@ -1,5 +1,7 @@
 package com.codechallenge.navigation
 
+import android.app.Activity
+
 abstract class NavigatorHandler {
 
     private var nextHandler: NavigatorHandler? = null
@@ -7,12 +9,17 @@ abstract class NavigatorHandler {
     /**
      * This abstraction should be improved a lot and restricted to fragments, views or activities
      */
-    abstract fun <T : Any> navigate(subject: T, sourceIdentifier: Int? = null)
+    abstract fun <T : NavigatorSubject> navigate(subject: T, vararg args: Any = emptyArray())
 
-    protected fun <T : Any> moveToNext(subject: T, sourceIdentifier: Int? = null) {
-        nextHandler?.navigate(subject, sourceIdentifier)
+    protected fun <T : NavigatorSubject> moveToNext(subject: T, vararg args: Any = emptyArray()) {
+        nextHandler?.navigate(subject, args)
             ?: throw IllegalStateException("It's not possible navigate from $subject")
     }
+
+    protected inline fun <reified T> Array<out Any>.firstArg(): T = get(0) as T
+
+    protected fun NavigatorSubject.toParentSubject() =
+        (getNavigatorContext() as Activity).navigationSubject()
 
     /**
      * This method act adding a next injection handler to the queue.

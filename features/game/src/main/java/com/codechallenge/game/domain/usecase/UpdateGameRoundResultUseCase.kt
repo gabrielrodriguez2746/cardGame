@@ -1,17 +1,17 @@
 package com.codechallenge.game.domain.usecase
 
 import com.codechallenge.game.data.model.Round
-import com.codechallenge.game.data.repositories.GameRoundRepository
+import com.codechallenge.game.data.repositories.RoundRepository
 import com.codechallenge.game.domain.formatter.PlayedCardFormatter
 import com.codechallenge.game.domain.model.PlayedCard
 import javax.inject.Inject
 
 class UpdateGameRoundResultUseCase @Inject constructor(
-    private val gameRoundRepository: GameRoundRepository,
+    private val gameRoundRepository: RoundRepository,
     private val playedCardFormatter: PlayedCardFormatter,
 ) {
 
-    fun execute(playedCards: Pair<PlayedCard, PlayedCard>) {
+    suspend fun execute(playedCards: Pair<PlayedCard, PlayedCard>) {
         gameRoundRepository.addRound(getRound(playedCards))
     }
 

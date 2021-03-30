@@ -7,5 +7,17 @@
     <string name="game_player_score">Score: %1$s</string>
     <string name="game_drawing">Drawing</string>
     <string name="game_winner_round_message">Round winner: %1$s</string>
+    <string name="game_reset_positive_button">Reset</string>
+    <string name="game_reset_negative_button">Cancel</string>
+    <string name="game_reset_body">Are you sure you want to restart your game?</string>
+    <string name="game_summary_title">Summary</string>
+    <string name="game_summary_text_item">Round %1$d. %2$s won. Cards: %3$s vs %4$s</string>
+    <string name="game_summary_heart_text">%1$d&#x2665;</string>
+    <string name="game_summary_diamond_text">%1$d&#x2666;</string>
+    <string name="game_summary_spade_text">%1$d&#x2660;</string>
+    <string name="game_summary_club_text">%1$d&#x2663;</string>
+    <string name="game_summary_positive_button">New game</string>
+    <string name="game_summary_negative_button">Finish</string>
+
 
 </resources>

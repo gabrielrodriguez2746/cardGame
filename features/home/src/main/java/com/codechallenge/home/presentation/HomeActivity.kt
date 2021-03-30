@@ -8,24 +8,30 @@ import com.codechallenge.home.R
 import com.codechallenge.home.databinding.ActivityHomeBinding
 import com.codechallenge.home.di.HomeActivityComponent
 import com.codechallenge.injector.InjectionHandler
-import com.codechallenge.injector.InjectionNode
 import com.codechallenge.injector.InjectionProvider
-import com.codechallenge.injector.getParentInjectionHandler
+import com.codechallenge.injector.NodeComponent
+import com.codechallenge.injector.SaveStateInjectionNode
 import com.codechallenge.injector.plug
+import com.codechallenge.injector.toTypedComponent
 import com.codechallenge.injector.unplug
 import com.codechallenge.navigation.NavigationProvider
 import com.codechallenge.navigation.NavigatorHandler
-import com.codechallenge.navigation.getParentNavigator
 import javax.inject.Inject
 
-class HomeActivity : AppCompatActivity(), NavigationProvider, InjectionNode<HomeActivityComponent>, InjectionProvider {
+class HomeActivity :
+    AppCompatActivity(),
+    NavigationProvider,
+    SaveStateInjectionNode<HomeActivityComponent>,
+    InjectionProvider {
+
+    override val identifier: String get() = HomeActivity::class.java.simpleName
+    override var saveState: Boolean = false
+
+    @Inject
+    lateinit var injectorHandler: InjectionHandler
 
     @Inject
     lateinit var navigatorHandler: NavigatorHandler
-
-    private val _navigatorHandler by lazy {
-        navigatorHandler.setNext(getParentNavigator())
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,20 +47,26 @@ class HomeActivity : AppCompatActivity(), NavigationProvider, InjectionNode<Home
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        saveState = true
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         unplug(this)
+        saveState = false
     }
 
     override fun getNavigator(): NavigatorHandler {
-        return _navigatorHandler
+        return navigatorHandler
     }
 
     override fun getInjectionHandler(): InjectionHandler {
-        return getParentInjectionHandler()
+        return injectorHandler
     }
 
-    override fun inject(component: HomeActivityComponent) {
-        component.inject(this)
+    override fun inject(component: NodeComponent) {
+        component.toTypedComponent<HomeActivityComponent>().inject(this)
     }
 }

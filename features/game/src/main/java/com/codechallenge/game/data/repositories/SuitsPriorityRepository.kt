@@ -5,13 +5,13 @@ import com.codechallenge.injector.PerFragment
 import javax.inject.Inject
 
 @PerFragment
-class SuitsPriorityRepository @Inject constructor() {
+class SuitsPriorityRepository @Inject constructor() : PriorityRepository {
 
     private var suitsPriorityList = CardSuit.values().toMutableList().apply { shuffle() }
 
-    fun getSuitsPriority(): List<CardSuit> = suitsPriorityList
+    override suspend fun getSuitsPriority(): List<CardSuit> = suitsPriorityList
 
-    fun clean() {
+    override suspend fun clean() {
         suitsPriorityList = CardSuit.values().toMutableList().apply { shuffle() }
     }
 }

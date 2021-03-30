@@ -9,9 +9,9 @@ import javax.inject.Inject
 @PerFragment
 class CardsGameRepository @Inject constructor(
     private val cardSetFactory: CardSetFactory
-) {
+) : GameRepository {
 
-    fun getSetOfCard(): List<PokerCard> {
+    override suspend fun getSetOfCard(): List<PokerCard> {
         return cardSetFactory.get(CardSuit.HEARTS).toMutableList() +
             cardSetFactory.get(CardSuit.CLUB).toMutableList() +
             cardSetFactory.get(CardSuit.SPADES).toMutableList() +

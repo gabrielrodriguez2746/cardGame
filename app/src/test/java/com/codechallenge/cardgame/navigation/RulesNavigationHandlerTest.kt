@@ -1,19 +1,16 @@
 package com.codechallenge.cardgame.navigation
 
-import android.content.Intent
-import androidx.fragment.app.FragmentActivity
+import android.app.Activity
 import com.codechallenge.cardgame.storage.HAS_SEEN_RULES
 import com.codechallenge.cardgame.storage.LocalStorageDataSource
-import com.codechallenge.home.presentation.HomeActivity
+import com.codechallenge.navigation.NavigatorSubject
 import com.codechallenge.rules.presentation.RulesActivity
-import com.codechallenge.rules.presentation.RulesFragment
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import io.mockk.runs
-import io.mockk.slot
+import io.mockk.spyk
 import io.mockk.verify
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -21,38 +18,36 @@ import org.junit.jupiter.api.assertThrows
 internal class RulesNavigationHandlerTest {
 
     private val localStorageDataSource: LocalStorageDataSource = mockk(relaxUnitFun = true)
-    private val intentDelegate: IntentDelegate = mockk()
     private lateinit var navigationHandler: RulesNavigationHandler
 
     @BeforeEach
     fun setup() {
-        navigationHandler = RulesNavigationHandler(localStorageDataSource, intentDelegate)
+        navigationHandler = spyk(RulesNavigationHandler(localStorageDataSource))
+        every { navigationHandler.navigateToHome(any()) } just runs
     }
 
     @Test
-    fun `GIVEN rules fragment WHEN navigate THEN finish activity root and store preference`() {
-        val intentSlot = slot<Intent>()
-        val intent = mockk<Intent>()
-        val mockedActivity = mockk<FragmentActivity>(relaxUnitFun = true) {
-            every { startActivity(capture(intentSlot)) } just runs
+    fun `GIVEN rules activity subject WHEN navigate THEN navigate home and store preference`() {
+        every { localStorageDataSource.getPreference(HAS_SEEN_RULES, any()) } returns false
+        val context = mockk<RulesActivity>()
+        val subject = mockk<NavigatorSubject>(relaxUnitFun = true) {
+            every { getNavigatorContext() } returns context
         }
-        val subject = mockk<RulesFragment> {
-            every { requireActivity() } returns mockedActivity
-        }
-        every { intentDelegate.getIntent(mockedActivity, HomeActivity::class.java) } returns intent
-
         navigationHandler.navigate(subject)
 
-        Assertions.assertEquals(intentSlot.captured, intent)
-        verify(exactly = 1) {
+        verify {
             localStorageDataSource.savePreference(HAS_SEEN_RULES, true)
-            mockedActivity.finish()
+            navigationHandler.navigateToHome(context)
         }
     }
 
     @Test
-    fun `GIVEN no rules fragment as subject and no more handlers WHEN navigate THEN throw exception`() {
-        val subject = mockk<RulesActivity>()
+    fun `GIVEN no rules activity subject and no more handlers WHEN navigate THEN throw exception`() {
+        every { localStorageDataSource.getPreference(HAS_SEEN_RULES, any()) } returns false
+        val context = mockk<Activity>()
+        val subject = mockk<NavigatorSubject>(relaxUnitFun = true) {
+            every { getNavigatorContext() } returns context
+        }
 
         assertThrows<IllegalStateException> {
             navigationHandler.navigate(subject)

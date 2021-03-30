@@ -1,5 +1,6 @@
 package com.codechallenge.injector
 
 interface InjectionNode<T : NodeComponent> {
-    fun inject(component: T)
+    val identifier: String
+    fun inject(component: NodeComponent)
 }

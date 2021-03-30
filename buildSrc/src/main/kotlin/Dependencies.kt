@@ -45,7 +45,6 @@ object Libraries {
             const val appcompat = "1.2.0"
             const val fragments = "1.3.1"
             const val lifecycle = "2.3.1"
-            const val archTesting = "2.1.0"
         }
 
         const val material = "com.google.android.material:material:${Versions.material}"
@@ -53,13 +52,12 @@ object Libraries {
         const val fragments = "androidx.fragment:fragment-ktx:${Versions.fragments}"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
         const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-        const val archTesting = "androidx.arch.core:core-testing:${Versions.archTesting}"
     }
 
     object Externals {
 
         private object Versions {
-            const val dagger = "2.25.3"
+            const val dagger = "2.33"
         }
 
         const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
@@ -72,8 +70,12 @@ object Libraries {
             const val junit5 = "5.7.1"
             const val mockk = "1.11.0"
             const val kotest = "4.4.3"
+            const val archTesting = "2.1.0"
+            const val coroutineTest = "1.4.3"
         }
 
+        const val archTesting = "androidx.arch.core:core-testing:${Version.archTesting}"
+        const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutineTest}"
         const val mockk = "io.mockk:mockk:${Version.mockk}"
         const val junit5Api = "org.junit.jupiter:junit-jupiter-api:${Version.junit5}"
         const val junit5Engine = "org.junit.jupiter:junit-jupiter-engine:${Version.junit5}"

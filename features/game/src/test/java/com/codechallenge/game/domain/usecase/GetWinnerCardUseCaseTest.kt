@@ -8,8 +8,10 @@ import com.codechallenge.game.domain.model.PlayerCard
 import io.kotest.data.blocking.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -33,10 +35,10 @@ internal class GetWinnerCardUseCaseTest {
         val suitsPriority = listOf<CardSuit>()
         val expected = PlayedCard.WinnerCard(card1) to PlayedCard.LooserCard(card2)
 
-        every { suitsPriorityRepository.getSuitsPriority() } returns suitsPriority
+        coEvery { suitsPriorityRepository.getSuitsPriority() } returns suitsPriority
         every { with(cardTieBreaker) { tieCards.tieBreak(suitsPriority) } } returns expected
 
-        useCase.execute(card1 to card2) shouldBe expected
+        runBlocking { useCase.execute(card1 to card2) shouldBe expected }
     }
 
     @Test
@@ -48,7 +50,7 @@ internal class GetWinnerCardUseCaseTest {
             row(lowestCard to highestCard, PlayedCard.LooserCard(lowestCard) to PlayedCard.WinnerCard(highestCard)),
             row(highestCard to lowestCard, PlayedCard.WinnerCard(highestCard) to PlayedCard.LooserCard(lowestCard)),
         ) { input, expected ->
-            useCase.execute(input) shouldBe expected
+            runBlocking { useCase.execute(input) } shouldBe expected
         }
     }
 

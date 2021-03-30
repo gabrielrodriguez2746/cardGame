@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeOverlay.CardGameAppTheme.Summary" parent="">
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.CardGame.Summary.MaterialAlertDialog</item>
+    </style>
+
+    <style name="ThemeOverlay.CardGame.Summary.MaterialAlertDialog" parent="ThemeOverlay.CardGame.MaterialAlertDialog">
+        <item name="listItemLayout">@layout/item_summary_view</item>
+        <item name="android:colorBackground">@color/color_background</item>
+        <item name="android:listDivider">?attr/dividerVertical</item>
+    </style>
+
+</resources>

@@ -6,11 +6,11 @@
         <item name="colorOnPrimary">@color/color_on_primary</item>
         <item name="colorPrimaryVariant">@color/color_primary_variant</item>
         <item name="colorOnBackground">@color/color_on_background</item>
+        <item name="colorOnSurface">@color/color_surface</item>
+        <item name="colorError">@color/color_error</item>
 
         <item name="android:statusBarColor">?colorPrimaryVariant</item>
         <item name="android:colorBackground">@color/color_background</item>
-        <item name="colorOnSurface">@color/color_surface</item>
-        <item name="colorError">@color/color_error</item>
 
         <!--Material type attributes-->
         <item name="textAppearanceHeadline1">@style/TextAppearance.CardGame.Display</item>
@@ -27,6 +27,8 @@
         <item name="textAppearanceOverline">@style/TextAppearance.CardGame.Caption</item>
         <item name="textAppearanceButton">@style/TextAppearance.CardGame.ButtonS</item>
 
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.CardGame.MaterialAlertDialog</item>
+
     </style>
 
     <style name="ThemeOverlay.CardGameAppTheme.Secondary" parent="">
@@ -36,6 +38,24 @@
 
     <style name="ThemeOverlay.CardGameAppTheme.Alternative" parent="">
         <item name="colorPrimary">@color/color_error</item>
+    </style>
+
+    <style name="ThemeOverlay.CardGame.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
+        <item name="colorOnBackground">@color/color_on_background</item>
+        <item name="colorOnSurface">@color/color_surface</item>
+        <item name="alertDialogStyle">@style/Styles.CardGame.Dialog</item>
+        <item name="buttonBarStyle">@style/Styles.CardGame.Dialog.ButtonBar</item>
+        <item name="materialAlertDialogTitlePanelStyle">@style/Styles.CardGame.Dialog.Title.Panel</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/Styles.CardGame.Dialog.Title.Icon</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/Styles.CardGame.Dialog.Title.Text</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/Styles.CardGame.Dialog.Body.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Styles.CardGame.Dialog.Button.Positive</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Styles.CardGame.Dialog.Button.Neutral</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Styles.CardGame.Dialog.Button.Negative</item>
     </style>
 
 </resources>

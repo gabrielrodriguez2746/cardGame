@@ -29,6 +29,7 @@ dependencies {
     testImplementation(Libraries.Test.mockk)
     testImplementation(Libraries.Test.junit5Api)
     testImplementation(Libraries.Test.kotestCore)
-    testImplementation(Libraries.Android.archTesting)
+    testImplementation(Libraries.Test.coroutineTest)
+    testImplementation(Libraries.Test.archTesting)
     testRuntimeOnly(Libraries.Test.junit5Engine)
 }

@@ -5,6 +5,7 @@ import com.codechallenge.game.data.model.CardSuit
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -23,7 +24,7 @@ internal class CardsGameRepositoryTest {
     fun `WHEN getSetOfCard THEN get all suits combinations`() {
         every { cardSetFactory.get(any()) } returns emptyList()
 
-        repository.getSetOfCard()
+        runBlocking { repository.getSetOfCard() }
 
         verify {
             cardSetFactory.get(CardSuit.DIAMOND)

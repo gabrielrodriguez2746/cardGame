@@ -12,6 +12,6 @@ class LandingActivity : AppCompatActivity() {
         with(ActivityLandingBinding.inflate(layoutInflater)) {
             setContentView(root)
         }
-        navigateNext(this)
+        navigateNext()
     }
 }
