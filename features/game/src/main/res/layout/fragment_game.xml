@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_game_scene"
+    app:motionDebug="SHOW_PATH">
 
     <com.codechallenge.game.presentation.views.UserView
         android:id="@+id/userViewPlayerTwo"
@@ -40,32 +43,65 @@
         android:id="@+id/cardViewPLayerOne"
         android:layout_width="@dimen/match_constraint"
         android:layout_height="@dimen/cardgame_card_height"
-        android:layout_marginEnd="@dimen/cardgame_spacing_xs"
-        android:visibility="gone"
+        android:layout_marginBottom="@dimen/cardgame_spacing_s"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/userViewPlayerOne"
         app:layout_constraintDimensionRatio="H,2:1.15"
-        app:layout_constraintEnd_toStartOf="@id/guidelinePlayedCards"
-        app:layout_constraintTop_toBottomOf="@id/userViewPlayerTwo" />
+        app:layout_constraintEnd_toEndOf="@id/guidelinePlayedCards"
+        app:layout_constraintStart_toStartOf="@id/guidelinePlayedCards" />
 
     <com.codechallenge.game.presentation.views.CardGameView
         android:id="@+id/cardViewPLayerTwo"
         android:layout_width="@dimen/match_constraint"
         android:layout_height="@dimen/cardgame_card_height"
-        android:layout_marginStart="@dimen/cardgame_spacing_xs"
-        android:visibility="gone"
+        android:layout_marginTop="@dimen/cardgame_spacing_s"
+        android:visibility="invisible"
         app:cardType="secondary"
-        app:layout_constraintBottom_toTopOf="@id/userViewPlayerOne"
         app:layout_constraintDimensionRatio="H,2:1.15"
-        app:layout_constraintStart_toEndOf="@id/guidelinePlayedCards"
+        app:layout_constraintEnd_toEndOf="@id/guidelinePlayedCards"
+        app:layout_constraintStart_toStartOf="@id/guidelinePlayedCards"
         app:layout_constraintTop_toBottomOf="@id/userViewPlayerTwo" />
+
+    <com.codechallenge.game.presentation.views.CardGameView
+        android:id="@+id/cardViewPLayerTwoDiscard"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="@dimen/cardgame_card_height"
+        android:layout_marginTop="@dimen/cardgame_spacing_m"
+        android:layout_marginEnd="@dimen/cardgame_spacing_s"
+        android:rotation="-45"
+        android:elevation="@dimen/cardgame_elevation_1"
+        android:visibility="invisible"
+        app:cardType="back"
+        app:layout_constraintBottom_toBottomOf="@id/userViewPlayerTwo"
+        app:layout_constraintDimensionRatio="H,2:1.15"
+        app:layout_constraintEnd_toEndOf="@id/userViewPlayerTwo"
+        app:layout_constraintTop_toTopOf="@id/userViewPlayerTwo"
+        />
+
+    <com.codechallenge.game.presentation.views.CardGameView
+        android:id="@+id/cardViewPLayerOneDiscard"
+        android:elevation="@dimen/cardgame_elevation_1"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="@dimen/cardgame_card_height"
+        android:layout_marginTop="@dimen/cardgame_spacing_m"
+        android:layout_marginEnd="@dimen/cardgame_spacing_s"
+        android:rotation="45"
+        android:visibility="invisible"
+        app:cardType="back"
+        app:layout_constraintBottom_toBottomOf="@id/userViewPlayerOne"
+        app:layout_constraintDimensionRatio="H,2:1.15"
+        app:layout_constraintEnd_toEndOf="@id/userViewPlayerOne"
+        app:layout_constraintTop_toTopOf="@id/userViewPlayerOne"
+        />
 
     <TextView
         android:id="@+id/textViewNotifications"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/match_constraint"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cardgame_spacing_xs"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.CardGame.HeadlineM"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardViewPLayerOne"
@@ -94,4 +130,4 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.motion.widget.TransitionAdapter
 import androidx.fragment.app.Fragment
-import androidx.transition.Transition
-import androidx.transition.TransitionListenerAdapter
-import androidx.transition.TransitionManager
 import com.codechallenge.design.hide
 import com.codechallenge.design.show
 import com.codechallenge.game.R
@@ -21,8 +20,6 @@ import com.codechallenge.injector.plug
 import com.codechallenge.injector.toTypedComponent
 import com.codechallenge.injector.unplug
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.transition.MaterialFade
-import com.google.android.material.transition.MaterialFadeThrough
 import javax.inject.Inject
 
 class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent>, NamedInjectionNode {
@@ -121,10 +118,10 @@ class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent>, 
     }
 
     private fun setGameResetState() {
-        binding.userViewPlayerOne.hideDiscardDeck()
+//        binding.userViewPlayerOne.hideDiscardDeck()
         binding.userViewPlayerOne.hideUserDeck()
         binding.userViewPlayerOne.score = "0"
-        binding.userViewPlayerTwo.hideDiscardDeck()
+//        binding.userViewPlayerTwo.hideDiscardDeck()
         binding.userViewPlayerTwo.hideUserDeck()
         binding.userViewPlayerTwo.score = "0"
         viewModel.onStart()
@@ -133,27 +130,18 @@ class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent>, 
     private fun setRoundFinishedState(state: GameState.RoundFinished) {
         binding.userViewPlayerOne.score = "${state.playerOnePoints}"
         binding.userViewPlayerTwo.score = "${state.playerTwoPoints}"
-        val animation = MaterialFadeThrough().apply {
-            addListener(
-                object : TransitionListenerAdapter() {
-                    override fun onTransitionEnd(transition: Transition) {
-                        setHitListener()
-                        viewModel.onNewRoundStart()
-                    }
-                }
-            )
-        }
-        TransitionManager.beginDelayedTransition(binding.root, animation)
         binding.cardViewPLayerOne.label = null
         binding.cardViewPLayerOne.suit = CardGameView.NONE
         binding.cardViewPLayerTwo.label = null
         binding.cardViewPLayerTwo.suit = CardGameView.NONE
-        binding.cardViewPLayerOne.hide()
-        binding.cardViewPLayerTwo.hide()
-        binding.userViewPlayerOne.showDiscardDeck()
-        binding.userViewPlayerTwo.showDiscardDeck()
-        binding.userViewPlayerOne.showTopPlayingCard()
-        binding.userViewPlayerTwo.showTopPlayingCard()
+        addTransitionListener { motionLayout, _, listener ->
+            setHitListener()
+            viewModel.onNewRoundStart()
+            motionLayout.removeTransitionListener(listener)
+        }
+        binding.motionContainer.transitionToState(R.id.start)
+//        binding.userViewPlayerOne.showDiscardDeck()
+//        binding.userViewPlayerTwo.showDiscardDeck()
     }
 
     private fun setRoundPlayedState(state: GameState.RoundPlayed) {
@@ -162,37 +150,19 @@ class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent>, 
         binding.cardViewPLayerOne.suit = state.card1.suit.suitId
         binding.cardViewPLayerTwo.label = state.card2.label
         binding.cardViewPLayerTwo.suit = state.card2.suit.suitId
-        val animation = MaterialFadeThrough().apply {
-            addListener(
-                object : TransitionListenerAdapter() {
-                    override fun onTransitionEnd(transition: Transition) = viewModel.onRound()
-                }
-            )
+        addTransitionListener { motionLayout, _, listener ->
+            viewModel.onRound()
+            motionLayout.removeTransitionListener(listener)
         }
-        TransitionManager.beginDelayedTransition(binding.root, animation)
-        binding.userViewPlayerOne.hideTopPlayingCard()
-        binding.userViewPlayerTwo.hideTopPlayingCard()
-        binding.cardViewPLayerOne.show()
-        binding.cardViewPLayerTwo.show()
+        binding.motionContainer.transitionToState(R.id.hit)
     }
 
     private fun setInitialState() {
         binding.textViewNotifications.text = getString(R.string.game_drawing)
-        TransitionManager.beginDelayedTransition(
-            binding.root,
-            MaterialFade().apply {
-                addListener(
-                    object : TransitionListenerAdapter() {
-                        override fun onTransitionEnd(transition: Transition) {
-                            hideNotification { setHitListener() }
-                        }
-                    }
-                )
-            }
-        )
         binding.textViewNotifications.show()
         binding.userViewPlayerOne.showUserDeck()
         binding.userViewPlayerTwo.showUserDeck()
+        hideNotification { setHitListener() }
     }
 
     private fun setHitListener() {
@@ -206,36 +176,40 @@ class GameFragment : Fragment(), SaveStateInjectionNode<GameFragmentComponent>, 
     }
 
     private fun hideNotification(onAnimationEnd: () -> Unit) {
-        val animation = MaterialFade().apply {
-            addListener(
-                object : TransitionListenerAdapter() {
-                    override fun onTransitionEnd(transition: Transition) {
-                        onAnimationEnd.invoke()
-                    }
-                }
-            )
-        }
-        TransitionManager.beginDelayedTransition(binding.root, animation)
         binding.textViewNotifications.hide()
+        onAnimationEnd.invoke()
     }
 
     private fun showWinnerLabel(hasPLayerOneWon: Boolean) {
-        binding.textViewNotifications.text = if (hasPLayerOneWon) {
-            getString(R.string.game_winner_round_message, getString(R.string.game_player_one))
+        if (hasPLayerOneWon) {
+            binding.textViewNotifications.text =
+                getString(R.string.game_winner_round_message, getString(R.string.game_player_one))
         } else {
-            getString(R.string.game_winner_round_message, getString(R.string.game_player_two))
+            binding.textViewNotifications.text =
+                getString(R.string.game_winner_round_message, getString(R.string.game_player_two))
         }
-        val animation = MaterialFade().apply {
-            addListener(
-                object : TransitionListenerAdapter() {
-                    override fun onTransitionEnd(transition: Transition) = hideNotification {
-                        viewModel.onWinnerCardDisplayed()
-                    }
+        addTransitionListener { motionLayout, currentId, listener ->
+            when {
+                currentId == R.id.round && hasPLayerOneWon -> motionLayout.transitionToState(R.id.roundOneWinner)
+                currentId == R.id.round && !hasPLayerOneWon -> motionLayout.transitionToState(R.id.roundTwoWinner)
+                currentId == R.id.roundTwoWinner || currentId == R.id.roundOneWinner -> {
+                    viewModel.onWinnerCardDisplayed()
+                    motionLayout.removeTransitionListener(listener)
                 }
-            )
+            }
         }
-        TransitionManager.beginDelayedTransition(binding.root, animation)
-        binding.textViewNotifications.show()
+        binding.motionContainer.transitionToState(R.id.round)
+    }
+
+    private fun addTransitionListener(onCompleteBlock: (motionLayout: MotionLayout, currentId: Int, listener: MotionLayout.TransitionListener) -> Unit) {
+        with(binding.motionContainer) {
+            val transitionListener = object : TransitionAdapter() {
+                override fun onTransitionCompleted(motionLayout: MotionLayout, currentId: Int) {
+                    onCompleteBlock.invoke(motionLayout, currentId, this)
+                }
+            }
+            addTransitionListener(transitionListener)
+        }
     }
 
     override fun inject(component: NodeComponent) {

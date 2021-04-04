@@ -7,7 +7,6 @@ import androidx.annotation.IntDef
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
 import com.codechallenge.design.getThemeColorStateList
-import com.codechallenge.design.hide
 import com.codechallenge.design.invisible
 import com.codechallenge.design.show
 import com.codechallenge.game.R
@@ -65,8 +64,6 @@ class UserView @JvmOverloads constructor(
 
     override fun setRotation(rotation: Float) {
         binding?.cardViewUser?.rotation = rotation
-        binding?.cardViewUserMotion?.rotation = rotation
-        binding?.cardViewDiscard?.rotation = rotation
         binding?.imageViewAvatar?.rotation = rotation
     }
 
@@ -77,40 +74,20 @@ class UserView @JvmOverloads constructor(
 
     fun hideUserDeck() {
         binding?.cardViewUser?.invisible()
-        binding?.cardViewUserMotion?.invisible()
-    }
-
-    fun hideTopPlayingCard() {
-        binding?.cardViewUserMotion?.hide()
-    }
-
-    fun showTopPlayingCard() {
-        binding?.cardViewUserMotion?.show()
     }
 
     fun showUserDeck() {
         binding?.cardViewUser?.show()
-        binding?.cardViewUserMotion?.show()
-    }
-
-    fun showDiscardDeck() {
-        binding?.cardViewDiscard?.show()
-    }
-
-    fun hideDiscardDeck() {
-        binding?.cardViewDiscard?.invisible()
     }
 
     private fun setPrimaryUser() {
         binding?.imageViewAvatar?.imageTintList = context.getThemeColorStateList(R.attr.colorPrimary)
         binding?.cardViewUser?.type = CardGameView.PRIMARY
-        binding?.cardViewUserMotion?.type = CardGameView.PRIMARY
     }
 
     private fun setSecondaryUser() {
         binding?.imageViewAvatar?.imageTintList = context.getThemeColorStateList(R.attr.colorPrimaryVariant)
         binding?.cardViewUser?.type = CardGameView.SECONDARY
-        binding?.cardViewUserMotion?.type = CardGameView.SECONDARY
     }
 
     companion object {

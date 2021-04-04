@@ -19,33 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Score: 2" />
 
-    <com.codechallenge.game.presentation.views.CardGameView
-        android:id="@+id/cardViewDiscard"
-        android:layout_width="@dimen/match_constraint"
-        android:layout_height="@dimen/cardgame_card_height"
-        android:layout_marginEnd="@dimen/cardgame_spacing_xs"
-        android:visibility="invisible"
-        app:cardType="back"
-        app:layout_constraintBottom_toBottomOf="@id/cardViewUser"
-        app:layout_constraintDimensionRatio="H,2:1.15"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cardViewUser"
-        tools:visibility="visible" />
 
-    <com.codechallenge.game.presentation.views.CardGameView
-        android:id="@+id/cardViewUserMotion"
-        android:layout_width="@dimen/match_constraint"
-        android:layout_height="@dimen/cardgame_card_height"
-        android:elevation="@dimen/cardgame_elevation_1"
-        android:visibility="invisible"
-        app:cardType="primary"
-        app:layout_constraintBottom_toBottomOf="@id/cardViewUser"
-        app:layout_constraintDimensionRatio="H,2:1.15"
-        app:layout_constraintEnd_toEndOf="@id/cardViewUser"
-        app:layout_constraintStart_toStartOf="@id/cardViewUser"
-        app:layout_constraintTop_toTopOf="@id/cardViewUser"
-        app:suit="none"
-        tools:visibility="visible" />
 
     <com.codechallenge.game.presentation.views.CardGameView
         android:id="@+id/cardViewUser"
@@ -55,6 +29,7 @@
         android:layout_marginBottom="@dimen/cardgame_spacing_xs"
         android:visibility="invisible"
         app:cardType="primary"
+        android:elevation="@dimen/cardgame_elevation_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H,2:1.15"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,8 +57,8 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.CardGame.HeadlineM"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/cardViewDiscard"
-        app:layout_constraintStart_toEndOf="@id/cardViewUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="Player One" />
 
 </merge>
